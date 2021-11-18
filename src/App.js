@@ -12,24 +12,25 @@ import NavBar from './components/NavBar.component';
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       {/* <Search /> */}
       {/* <Router> */}
-        <Routes>
+      <Routes>
         {/* <Switch> */}
         {/* <Route path="/" element={<Search/>}/>
         <Route path="saerch" element={<Search/>}/> */}
 
         {/* <Route exact component={ } pathname="/" /> */}
-        <Route exact element={<About/>} path="/about" />
-        
-        <Route exact element={<AllProduct/>} path="/allProduct" />
-        <Route exact element={<Search/>} path="/search" />
-        <Route exact element={<PrivateArea/>} path="/privateArea" />
-        <Route exact element={<AddProgram/>} path="/addProgram" />
-        <Route exact element={<Login/>} path="/login" />
+        <Route exact element={<About />} path="/about" />
 
-        </Routes>
+
+        <Route exact element={<AllProduct />} path="/allProduct" />
+        <Route exact element={<Search />} path="/search" />
+        <Route exact element={<PrivateArea />} path="/privateArea" />
+        <Route exact element={<AddProgram />} path="/addProgram" />
+        <Route exact element={<Login />} path="/login" />
+        <Route exact element={<Search />} path="/" />
+      </Routes>
       {/* </Router> */}
       {/* </Switch> */}
     </div>
