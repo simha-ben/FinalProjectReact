@@ -5,8 +5,8 @@ class UserService {
         this.url = "http://localhost:57828/api/user"
     }
 
-    _getHello = () => {
-        return axios.get(`http://localhost:57828/api/user`)
+    _getHello = (url) => {
+        return axios.get(url)
         // .then(
         //     (result) => {
 
@@ -73,26 +73,27 @@ class UserService {
     //         })
     // }
 
-    _createGetReqest = (url) => {
-        fetch(url)
-            .then(
-                (response) => {
-                    if (response.status >= 300 || response.status < 200) {
-                        const error = new Error();
-                        error.response = response;
-                        throw error
-                    }
-                    return response.text()
-                })
-        return 0;
-    }
+    // _createGetReqest = (url) => {
+    //     fetch(url)
+    //         .then(
+    //             (response) => {
+    //                 if (response.status >= 300 || response.status < 200) {
+    //                     const error = new Error();
+    //                     error.response = response;
+    //                     throw error
+    //                 }
+    //                 return response.text()
+    //             })
+    //     return 0;
+    // }
 
-    register = (values) => {
-        return this._createReqest(values, `${this.url}register`)
-    }
+    // register = (values) => {
+    //     return this._createReqest(values, `${this.url}register`)
+    // }
+    
     getAll = async () => {
         try {
-            let a = await this._getHello();
+            let a = await this._getHello(`${this.url}/user`);
             return a.data;
         } catch (error) {
             return error
