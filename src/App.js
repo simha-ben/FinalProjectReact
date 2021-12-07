@@ -13,17 +13,8 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      {/* <Search /> */}
-      {/* <Router> */}
       <Routes>
-        {/* <Switch> */}
-        {/* <Route path="/" element={<Search/>}/>
-        <Route path="saerch" element={<Search/>}/> */}
-
-        {/* <Route exact component={ } pathname="/" /> */}
         <Route exact element={<About />} path="/about" />
-
-
         <Route exact element={<AllProduct />} path="/allProduct" />
         <Route exact element={<Search />} path="/search" />
         <Route exact element={<PrivateArea />} path="/privateArea" />
@@ -31,8 +22,6 @@ function App() {
         <Route exact element={<Login />} path="/login" />
         <Route exact element={<Search />} path="/" />
       </Routes>
-      {/* </Router> */}
-      {/* </Switch> */}
     </div>
   );
 }

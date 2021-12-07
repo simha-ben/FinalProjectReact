@@ -1,18 +1,13 @@
 import axios from 'axios';
-class ProgramService {
+import servise from './Main.service';
 
-    constructor() {
-        this.url = "http://localhost:57828/api"
-    }
+ class ProgramService {
 
-    _getProgram = (url) => {
-        return axios.get(url)
-    }
-
+   
 
     getAllProgram = async () => {
         try {
-            let p = await this._getProgram(`${this.url}/Program`);
+            let p = await servise.GET("program");
             return p.data;
         } catch (error) {
             return error
