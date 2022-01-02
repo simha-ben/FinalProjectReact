@@ -20,23 +20,6 @@ export default connect(mapStateToProps,mapDispatchToProps)( function AllProduct(
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(true);
     let{programs}=props
-    // useEffect(() => {
-    //     async function service() {
-    //         try {
-    //             let p = await ProgramService.getAllProgram();
-    //             debugger;
-    //             console.log(p);
-    //             setIsLoaded(true);
-    //             setProgram(p);
-    //         } catch (error) {
-    //             setIsLoaded(true)
-    //             setError(error)
-    //         }
-    //     }
-    //     service()
-    // }, [])
-
-
     return (
         <>
             <h1>AllProduct</h1>

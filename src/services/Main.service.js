@@ -7,5 +7,9 @@ class MainService {
     GET = (url) => {
         return axios.get(`${this.baseUrl}/${url}`)
     }
+    POST = (url, data) => {
+        return axios.post(`${this.baseUrl}/${url}`,data)
+    }
 }
 export default new MainService();
+

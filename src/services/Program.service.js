@@ -1,9 +1,7 @@
 import axios from 'axios';
 import servise from './Main.service';
 
- class ProgramService {
-
-   
+ class ProgramService { 
 
     getAllProgram = async () => {
         try {
@@ -12,12 +10,15 @@ import servise from './Main.service';
         } catch (error) {
             return error
         }
-
     }
-   
-
-
-   
+    getAllKategories = async () => {
+        try {
+            let p = await servise.GET("Program/getFields/Type");
+            return p.data;
+        } catch (error) {
+            return error
+        }
+    }
 
 }
 export default new ProgramService()

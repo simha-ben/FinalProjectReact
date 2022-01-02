@@ -14,6 +14,7 @@ export default function NavBar() {
                         <NavLink activeClassName="active" className="nav-link" exact to="/privateArea">privateArea</NavLink>
                         <NavLink activeClassName="active" className="nav-link" exact to="/addProgram">addProgram</NavLink>
                         <NavLink activeClassName="active" className="nav-link" exact to="/login">login</NavLink>
+                        <NavLink activeClassName="active" className="nav-link" exact to="/">home</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
