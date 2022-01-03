@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Tabs from 'react-bootstrap/Tabs'
 import { Tab } from 'bootstrap'
 import Search from './Search.component';
@@ -19,6 +19,7 @@ function mapDispatchToProps(dispatch) {
 
     };
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)
     (function Home(props){ 
         let {kategories}=props

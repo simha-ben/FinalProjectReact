@@ -23,52 +23,17 @@ export default function About() {
     const [isLoaded, setIsLoaded] = useState(true);
     const [tasks, setTasks] = useState([]);
 
-
-    
-    useEffect(() => {
-       // let t=await UserService.getAll()
-        // debugger
-        async  function service() {
-        debugger
-        let t=await UserService.getAll()
-        setTasks(t);
-    }
-        service() 
-        //setTasks()
-
-// fetch("http://localhost:65509/api/user")
-//           //  .then(res => res.text())
-
-//             .then(
-//                 (result) => {
-//                     setTasks(result.data);
-//                 },
-//                 (error) => {
-//                     setError(error);
-//                 }
-//             )
-        // axios.get(`http://localhost:65509/api/user`)
-        //     .then(
-        //         (result) => {
-        //             setIsLoaded(true);
-        //             setTasks(result.data);
-        //         },
-        //         (error) => {
-        //             setIsLoaded(true);
-        //             setError(error);
-        //         }
-        //     )
-
-    }, [])
+    // useEffect(() => {
+    //     async function service() {
+    //         debugger
+    //         let t = await UserService.getAll()
+    //         setTasks(t);
+    //     }
+    //     service()
+    // }, [])
     return (
         <>
             <h1>About</h1>
-            <h1>{tasks}</h1>
-            {!tasks && <h1>1</h1>}
-            {tasks && <h1>{tasks}</h1>}
-            {/* <button onClick={service1}>click</button> */}
-
-
         </>
     )
     // if (error) {
