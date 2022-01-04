@@ -19,6 +19,14 @@ import servise from './Main.service';
             return error
         }
     }
+    getAllTableValues = async (tableName) => {
+        try {
+            let p = await servise.GET("Program/getFields/" +tableName);
+            return p.data;
+        } catch (error) {
+            return error
+        }
+    }
 
 }
 export default new ProgramService()

@@ -10,6 +10,7 @@ import NavBar from './components/NavBar.component';
 import Home from './components/Home.componnent';
 import RegistrationComponent from './components/Registration.component';
 import NewMessage from './components/NewMessage.component';
+import multiSelect from './components/multiSelect';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route exact element={<Login />} path="/login" />
         <Route exact element={<NewMessage />} path="/newMessage" />
         <Route exact element={<RegistrationComponent />} path="/registration" />
+        <Route exact element={<multiSelect />} path="/multiSelect" />
         <Route exact element={<Home />} path="/" />
       </Routes>
     </div>

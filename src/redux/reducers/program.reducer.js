@@ -3,8 +3,9 @@ import createReducer from './reducerUtils';
 import produce from 'immer'
 
 const initialState = {
-   programs:[] ,
-   kategories:[] 
+   optionSetValues:{},
+   
+   programs:[]
 }
 
 const programFunc = {
@@ -13,7 +14,7 @@ const programFunc = {
    },
    setKategories(state,action){
       debugger
-      state.kategories=action.payload
+      state.optionSetValues[action.payload.key]=action.payload.value
   },
 }
 
