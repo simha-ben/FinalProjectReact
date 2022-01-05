@@ -3,8 +3,7 @@ import createReducer from './reducerUtils';
 import produce from 'immer'
 
 const initialState = {
-   optionSetValues:{},
-   
+   optionSetValues:{},   
    programs:[]
 }
 

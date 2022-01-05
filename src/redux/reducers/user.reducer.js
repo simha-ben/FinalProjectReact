@@ -4,7 +4,7 @@ import produce from 'immer'
 import UserService from '../../services/User.service';
 
 const initialState = {
-    id: null,
+    id: 102,
    
 }
 

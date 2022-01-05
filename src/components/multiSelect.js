@@ -42,7 +42,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function MultySelect
         <div>
             <h5>{props.title || tableName}</h5>
             <Select
-                closeMenuOnSelect={false}
+                closeMenuOnSelect={true}
                 components={animatedComponents}
                 defaultValue={[]}
                 isMulti

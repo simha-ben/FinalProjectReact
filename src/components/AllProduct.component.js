@@ -24,19 +24,19 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)
     (function AllProduct(props) {
 
 const price=useRef(200);
         let { programs } = props;
         const [viewPrograms, setViewPrograms] = useState([...programs]);
+        const [selectedValues, setSlectedValues] = useState({});
 
 
-        let selectedValues = {
-
-        }
         function saveOptions(e) {
-            selectedValues[e.key.toLocaleLowerCase()] = e.value;
+            selectedValues[e.key.toLocaleLowerCase()] = e.value; 
+            setSlectedValues(selectedValues);
             console.log(selectedValues);
         }
         function filter() {
@@ -50,8 +50,8 @@ const price=useRef(200);
                         }
                     }
                 }
-                if(p.price<parseInt(price.current.value))
-                show=false
+                if(price.current.value && p.price < parseInt(price.current.value))
+                   show=false
 //לבדוק מה הפונקציה עושה
                 return show;
             })

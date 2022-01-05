@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
 
     return {
      updateId: (id) => dispatch(actions.setId(id)),
-     updateName: (name) => dispatch(actions.setName(name)),
+    //  updateName: (name) => dispatch(actions.setName(name)),
     };
 }
 
@@ -30,9 +30,13 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
         console.log(`${values.userName} ${values.email} ${values.password}`)
          const token = await UserService.login(values)
         console.log("the id is: "+token);
+
         props.updateId(token);
-        if(token){
+        if(token >1 ){
          nevigate('/privateArea')
+        }
+        else{
+            alert("we're sorry, but we cannot let you in :( please try agin")
         }
     } 
     return (
