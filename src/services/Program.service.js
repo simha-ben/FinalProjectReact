@@ -27,6 +27,14 @@ import servise from './Main.service';
             return error
         }
     }
+    addNewProgram= async (newP) => {
+        try {
+            let p = await servise.POST("Program",newP);
+            return p.data;
+        } catch (error) {
+            return error
+        }
+    }
 
 }
 export default new ProgramService()
