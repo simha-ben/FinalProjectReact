@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, setState } from 'react';
 import ProgramService from '../services/Program.service';
-import { Card, Button, Collapse} from 'react-bootstrap'
+import { Card, Button, Collapse } from 'react-bootstrap'
 import { connect, shallowEqual } from 'react-redux'
 import { Drawer, } from 'react-bootstrap-drawer';
 import ShowProgram from './ShowProgram.component';
@@ -8,6 +8,7 @@ import Select from 'react-select'
 import { Input } from 'bootstrap'
 import makeAnimated from 'react-select/animated'
 import MultySelect from './multiSelect';
+import { setNestedObjectValues } from 'formik';
 
 
 function mapStateToProps(state) {
@@ -28,14 +29,15 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)
     (function AllProduct(props) {
 
-const price=useRef(200);
-        let { programs } = props;
-        const [viewPrograms, setViewPrograms] = useState([...programs]);
+        const price = useRef(200);
+        // let { programs } = props;
+        const [programs] = useState([...props.programs]);
+        const [viewPrograms, setViewPrograms] = useState([...props.programs]);
         const [selectedValues, setSlectedValues] = useState({});
 
 
         function saveOptions(e) {
-            selectedValues[e.key.toLocaleLowerCase()] = e.value; 
+            selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
             console.log(selectedValues);
         }
@@ -50,11 +52,10 @@ const price=useRef(200);
                         }
                     }
                 }
-                if(price.current.value && p.price < parseInt(price.current.value))
-                   show=false
-//לבדוק מה הפונקציה עושה
+                if (price.current.value && p.price < parseInt(price.current.value))
+                    show = false
                 return show;
-            })
+            });
             setViewPrograms(arr);
         };
 
@@ -78,8 +79,8 @@ const price=useRef(200);
                             <MultySelect tableName={'Type'} onSelect={saveOptions} ></MultySelect>
                             <MultySelect tableName={'Subject'} onSelect={saveOptions}></MultySelect>
 
-                            up to:  <input type="number" ref={price}/>
-{/*                             
+                            up to:  <input type="number" ref={price} />
+                            {/*                             
                             <Slider
                                 size="small"
                                 defaultValue={70}

@@ -29,7 +29,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
         async () => {
             if (id) {
                 let name = await UserService.getNameById(id);
-                debugger;
+                
                 setUserName(name);
             }
         }, []
@@ -49,9 +49,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
 
     async function getAcceptedMeaasges() {
         try {
-            debugger;
+            
             let p = await MessageService.getMessages('accepted', id);
-            debugger;
+            
             setMeaasges(p);
             // alert(acceptedMessage)
             console.log(p);
@@ -62,9 +62,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
     }
     async function getSentdMeaasges() {
         try {
-            debugger;
+            
             let p = await MessageService.getMessages('sent', id);
-            debugger;
+            
             setMeaasges(p);
             // alert(acceptedMessage)
             console.log(p);

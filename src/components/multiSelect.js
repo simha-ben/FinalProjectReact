@@ -21,7 +21,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function MultySelect
     const [options, setOptions] = useState([])
 
     async function loadOptions() {
-        debugger
+        
         var values = fields[tableName]
         //  var values = await ProgramService.getAllTableValues(tableName);
         let vv = values.map((i) => { return { value: i, label: i } });

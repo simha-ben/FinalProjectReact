@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap'
 import NewMessage from './NewMessage.component';
 
 
 export default function ShowProgram(props) {
-    const [program] = useState(props.program);
+    const [program, setP] = useState(props.program);
     const [newM, setnewM] = useState(false);
     const [TO, setTO] = useState(0);
     const [toName, setToName] = useState('');
+
+
+    useEffect(() => {
+        setP(props.program);
+      }, [props.program]);
+
     return (
         <>
         <Card style={{ margin: '5px' }}>

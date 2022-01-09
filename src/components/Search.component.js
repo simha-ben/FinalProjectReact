@@ -20,7 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Search(prop
     const [filterProgram, setFilterProgram] = useState([]);
     let wordToSearch = useRef('')
     function search(e) {
-        debugger;
+        
         e.preventDefault();
         let program = props.programs.filter(p =>
             p.title && p.title.includes(wordToSearch.current.value)||

@@ -23,7 +23,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
     if (props.id) {
         id = props.id
     }
-    debugger;
+    
     if (id == null) {
         return (
             < div>

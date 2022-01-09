@@ -2,7 +2,7 @@
 // import UserService from '../services/User.service';
 // export default function About() {
 //     const [get, setGet] = useState(null);
-//     debugger
+//     
 //     setGet(UserService.getAll());
 
 //     return (
@@ -25,7 +25,7 @@ export default function About() {
 
     // useEffect(() => {
     //     async function service() {
-    //         debugger
+    //         
     //         let t = await UserService.getAll()
     //         setTasks(t);
     //     }

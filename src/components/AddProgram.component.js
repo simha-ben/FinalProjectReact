@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { connect } from 'react-redux'
-import UserService from '../services/User.service';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
@@ -13,9 +12,7 @@ function mapStateToProps(state) {
     };
 }
 function mapDispatchToProps(dispatch) {
-    return {
-
-    };
+    return { };
 }
 function mapListToOptionSet(val) {
     return { value: val, label: val };
@@ -28,7 +25,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
     //     async () => {
     //         if (id) {
     //             let name = await UserService.getNameById(id);
-    //             debugger;
+    //             
     //             setUserName(name);
     //         }
     //     }, []
@@ -47,7 +44,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         Language: Yup.string().required('this feild is required')
     })
     const handleSubmit = async (values) => {
-        debugger
+        
         console.log(`${values.ProgramerName} ${values.Price} ${values.Language}`)
         // let token = await ProgramService.addNewProgram(values)
         // props.updateId(token);
@@ -72,9 +69,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                 initialValues={{}}
                 onSubmit={handleSubmit}
                 validationSchema={LoginSchema}
+
+                onSubmit={async (values) => {await handleSubmit(values); }}
             >
-                <Form class="row row d-flex justify-content-center"
-                    onSubmit={handleSubmit} >
+                <Form class="row row d-flex justify-content-center" >
                     <div class="col-5 ">
                         <div className="form-group">
                             <Field value={UserName} type="text"

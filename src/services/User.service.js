@@ -29,7 +29,7 @@ class UserService {
     addNewUser=async(newUser)=>{
         try {
             console.log(newUser);
-            debugger;
+            
             let a = await servise.POST("user",newUser) ;
             return a.data;
         } catch (error) {

@@ -14,7 +14,7 @@ import servise from './Main.service';
     getMessages = async (type,id) => {
         try {
             let p = await servise.GET(`message/${type}/${id}`);
-            debugger;
+            
             return p.data;
         } 
         catch (error) {

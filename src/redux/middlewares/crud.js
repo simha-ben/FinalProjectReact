@@ -32,7 +32,7 @@ export  const  getProgramFromServer =  ({ dispatch, getState }) => next =>async 
 // export const getKategoriesFromServer =  ({ dispatch, getState }) => next => action => {
 //     async function getKategories(){
 //          const kategories = await programService.getAllKategories();
-//          debugger
+//          
 //          dispatch(actions.setKategories(kategories))
 //     }
 //         if (action.type === 'GET_KATEGORIES_FROM_SERVER') {

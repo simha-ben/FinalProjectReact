@@ -1,0 +1,10 @@
+Button{
+    /* background-color: rgb(31, 175, 194) !important; */
+    border: rgb(76, 172, 236),solid,1px;
+  }
+  li{
+      background-color: whitesmoke !important;
+  }
+  #tab{
+    background-color: whitesmoke !important;
+  }
