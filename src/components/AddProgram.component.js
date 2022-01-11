@@ -34,7 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         ProgramerName: Yup.string().required('this feild is required'),
         Price: Yup.number().required('this feild is required'),
         Title: Yup.string().required('this feild is required'),
-        PublishDate: Yup.string().required('this feild is required'),
+        PublishDate: Yup.date().required('this feild is required'),
         Migdar: Yup.string(),//.required('this feild is required'),
         Subject: Yup.string(),//.required('this feild is required'),
         Description: Yup.string().required('this feild is required'),
@@ -46,7 +46,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
     const handleSubmit = async (values) => {
         
         console.log(values);
-        values.programmer=id;
+        values.Programer=id;
         let token = await ProgramService.addNewProgram(values);
         console.log("regisrer ststus is: " + token);
     }
@@ -90,7 +90,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                             <ErrorMessage name="Description" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="Price" type="text" name="Price" className="form-control" />
+                            <Field placeholder="Price" type="number" name="Price" className="form-control" />
                             <ErrorMessage name="Price" component="div" />
                         </div>
                         <Field name="Subject" component={SelectField} 
@@ -101,7 +101,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                          options={allOptions["Language"]} />
                      
                         <div className="form-group">
-                            <Field placeholder="PublishDate" type="text" name="PublishDate" className="form-control" />
+                            <Field placeholder="PublishDate" type="date" name="PublishDate" className="form-control" />
                             <ErrorMessage name="PublishDate" component="div" />
                         </div>
                         <div className="form-group">

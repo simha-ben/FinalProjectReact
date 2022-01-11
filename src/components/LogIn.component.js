@@ -3,7 +3,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import UserService from '../services/User.service';
 import {connect} from 'react-redux'
-import {useNavigate } from 'react-router-dom'
+import { useNavigate ,} from 'react-router-dom'
 import { actions } from '../redux/Action';
 
 function mapStateToProps(state) {
@@ -15,12 +15,12 @@ function mapDispatchToProps(dispatch) {
 
     return {
      updateId: (id) => dispatch(actions.setId(id)),
-    //  updateName: (name) => dispatch(actions.setName(name)),
     };
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(function Login(props) {
    const nevigate=useNavigate();
+   
     const LoginSchema = Yup.object().shape({
         userName: Yup.string().required('this feild is required'),
         email: Yup.string().required('this feild is required').email('bad email'),
@@ -33,7 +33,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
 
         props.updateId(token);
         if(token >1 ){
-         nevigate('/privateArea')
+            nevigate(-1);
         }
         else{
             alert("we're sorry, but we cannot let you in :( please try agin")
@@ -41,14 +41,15 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
     } 
     return (
         <>
-            <h1>Login</h1>
             <Formik
             initialValues={{userName:'', email: '', password: "" }}
             onSubmit={handleSubmit}
             validationSchema={LoginSchema}
-
+          
             >
-                <Form>
+                <div   class="row d-flex justify-content-center">
+                <Form class="col-4">
+                    <br/><br/>
                     <div className="form-group">
                         <Field placeholder="name" type="text" name="userName" className="form-control" />
                         <ErrorMessage name="userName" component="div" />
@@ -61,11 +62,15 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
                         <Field placeholder="password" type="password" name="password" className="form-control" />
                         <ErrorMessage name="password" component="div" />
                     </div>
+                    <br/>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
+                    
                 </Form>
+                </div>
             </Formik>
+            <br/>
             <div>
                 
              לקוח חדש? הרשם  <a href='/registration'>כאן</a>
