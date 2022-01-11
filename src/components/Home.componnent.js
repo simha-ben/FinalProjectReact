@@ -26,16 +26,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Home(props)
 
     function filterProgram(value, type) {
         
-        if (flag) {
-            setFlag(false)
-        }
-        else {
+       
             let t = programs.filter((item) => item[type] == value)
             if (t) {
                 setProgramList(t)
                 setFlag(true)
             }
-        }
+        
 
 
     }

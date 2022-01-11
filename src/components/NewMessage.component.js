@@ -3,7 +3,7 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
 import MessageService from '../services/Message.service';
 import { connect } from 'react-redux';
-import { Alert,Button } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 /**
  * 
@@ -46,17 +46,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
     if (props.id) {
         id = props.id
     }
-    
+
     if (id == null) {
         return (
             <Alert variant="danger">
                 <div className="alert alert-danger alert-dismissible">
                     אווופס עדיין לא נכנסת למערכת
-                    <Link to="/Login" className="close" data-dismiss="alert" aria-label="close">&times;להתחברות/הרשמה לחץ כאן</Link>
+                    <Link to="/Login" className="close" data-dismiss="alert" aria-label="close">להתחברות/הרשמה לחץ כאן</Link>
                     <strong></strong>
-                    return <Button >Show Alert</Button>;
                 </div>
-                </Alert>
+            </Alert>
         )
     }
 
@@ -80,37 +79,38 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
         }
     }
     return (
+        <div class="row d-flex justify-content-center">
 
-        <Formik
-            initialValues={{ to: 0, title: '', context: "" }}
-            onSubmit={handleSubmit}
-            validationSchema={MessageSchema}
-        >
-            <Form>
-                {
-                    !toID && <div className="form-group">
-                        <Field placeholder="to" type="text" name="to" className="form-control" />
-                        <ErrorMessage name="to" component="div" />
+            <Formik
+                initialValues={{ to: 0, title: '', context: "" }}
+                onSubmit={handleSubmit}
+                validationSchema={MessageSchema}
+            >
+                <Form  class="col-4">
+                    {
+                        !toID && <div className="form-group">
+                           אל <Field placeholder="to" type="text" name="to" className="form-control" />
+                            <ErrorMessage name="to" component="div" />
+                        </div>
+                    }
+                    {
+                        toName && <div className="form-group">
+                         אל   <Field value={toName} type="text" name="to" className="form-control" />
+                            <ErrorMessage name="to" component="div" />
+                        </div>
+                    }
+                    <div className="form-group">
+                      נושא  <Field placeholder="title" type="text" name="title" className="form-control" />
+                        <ErrorMessage name="title" component="div" />
                     </div>
-                }
-                {
-                    toName && <div className="form-group">
-                        <Field value={toName} type="text" name="to" className="form-control" />
-                        <ErrorMessage name="to" component="div" />
+                    <div className="form-group">
+                      תוכן  <Field placeholder="context" type="text" name="context" className="form-control" />
                     </div>
-                }
-                <div className="form-group">
-                    <Field placeholder="title" type="text" name="title" className="form-control" />
-                    <ErrorMessage name="title" component="div" />
-                </div>
-                <div className="form-group">
-                    <Field placeholder="context" type="text" name="context" className="form-control" />
-                </div>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </div>
-            </Form>
-        </Formik>
-
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                </Form>
+            </Formik>
+        </div>
     );
 })

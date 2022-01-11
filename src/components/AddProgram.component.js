@@ -42,6 +42,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         Type: Yup.string(),//.required('this feild is required'),
         Age: Yup.string(),//.required,//('this feild is required'),
         Language: Yup.string(),//.required('this feild is required')
+        photo:"",//.required('this feild is required')
     })
     const handleSubmit = async (values) => {
         
@@ -107,6 +108,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                         <div className="form-group">
                             <Field placeholder="Title" type="text" name="Title" className="form-control" />
                             <ErrorMessage name="Title" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <Field placeholder="photo" type="file" name="photo"className="form-control" />
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">Submit</button>
