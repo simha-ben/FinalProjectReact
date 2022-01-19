@@ -22,9 +22,9 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
    const nevigate=useNavigate();
    
     const LoginSchema = Yup.object().shape({
-        userName: Yup.string().required('this feild is required'),
-        email: Yup.string().required('this feild is required').email('bad email'),
-        password: Yup.string().required('this feild is required')
+        userName: Yup.string().required('זהו שדה חובה'),
+        email: Yup.string().required('זהו שדה חובה').email('מייל לא תקין'),
+        password: Yup.string().required('זהו שדה חובה')
     })
     const handleSubmit = async (values) => {
         console.log(`${values.userName} ${values.email} ${values.password}`)
@@ -51,20 +51,20 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
                 <Form class="col-4">
                     <br/><br/>
                     <div className="form-group">
-                        <Field placeholder="name" type="text" name="userName" className="form-control" />
+                        <Field placeholder="שם משתמש" type="text" name="userName" className="form-control" />
                         <ErrorMessage name="userName" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="email" type="email" name="email" className="form-control" />
+                        <Field placeholder="מייל" type="email" name="email" className="form-control" />
                         <ErrorMessage name="email" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="password" type="password" name="password" className="form-control" />
+                        <Field placeholder="סיסמא" type="password" name="password" className="form-control" />
                         <ErrorMessage name="password" component="div" />
                     </div>
                     <br/>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">הכנס</button>
                     </div>
                     
                 </Form>

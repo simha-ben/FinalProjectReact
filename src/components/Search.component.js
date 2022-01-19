@@ -33,12 +33,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Search(prop
         <>
         <form onSubmit={search}>
              <label>
-                 <h3>search a program everywhere...</h3>
+                 <h3>חיפוששששששש</h3>
                 <br/>
-                <input ref={wordToSearch}></input></label>
+                <input placeholder='אני מחפש/ת...' ref={wordToSearch}></input></label>
                 <br/>
                 <br/>
-            <Button type="submit" onClick={search}> search me!</Button>
+            <Button type="submit" onClick={search}>מצא אותי!</Button>
             {
                 filterProgram && filterProgram.map((v, i) => (
                     <ShowProgram program={v}></ShowProgram>))

@@ -63,7 +63,7 @@ export default connect(mapStateToProps, mapDispatchToProps)
         return (
             <>
                 <div className='ctainer'>
-                    <div className='row'> <h1>AllProduct</h1></div>
+                    <div className='row'> <h1>המוצרים שלנו</h1></div>
                     <div className='row'>
                         <div className='col-9'>
                             {
@@ -72,12 +72,12 @@ export default connect(mapStateToProps, mapDispatchToProps)
                             }
                         </div>
                         <div className='col-3'>
-                            <Button onClick={filter}>filter</Button>
-                            <MultySelect tableName={'Age'} onSelect={saveOptions}></MultySelect>
-                            <MultySelect tableName={'Language'} onSelect={saveOptions}></MultySelect>
-                            <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="Sum Of Participants"></MultySelect>
-                            <MultySelect tableName={'Type'} onSelect={saveOptions} ></MultySelect>
-                            <MultySelect tableName={'Subject'} onSelect={saveOptions}></MultySelect>
+                            <Button onClick={filter}>סנן</Button>
+                            <MultySelect tableName={'Age'} onSelect={saveOptions}title="מיועד לגיל"></MultySelect>
+                            <MultySelect tableName={'Language'} onSelect={saveOptions}title="שפה"></MultySelect>
+                            <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
+                            <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
+                            <MultySelect tableName={'Subject'} onSelect={saveOptions}title="נושא"></MultySelect>
 
                             up to:  <input type="number" ref={price} />
                             {/*                             

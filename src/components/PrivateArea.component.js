@@ -80,9 +80,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
     return (
         <>
             <h3>hello {userName} :)</h3>
-            <Button variant="primary" onClick={getSentdMeaasges}>sent</Button>{"   "}
-            <Button variant="primary" onClick={getAcceptedMeaasges}>accepted</Button>{"    "}
-            <Button variant="primary" onClick={createNewMessage}>new message</Button>
+            <Button variant="primary" onClick={getSentdMeaasges}>נשלח</Button>{"   "}
+            <Button variant="primary" onClick={getAcceptedMeaasges}>התקבל</Button>{"    "}
+            <Button variant="primary" onClick={createNewMessage}>הודעה חדשה</Button>
             {
                 createNew &&<NewMessage from={id}/>                    
             }

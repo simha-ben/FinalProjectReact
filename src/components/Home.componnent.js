@@ -6,6 +6,8 @@ import Search from './Search.component';
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import ShowProgram from './ShowProgram.component';
+import MySwiper from './Swiper.component';
+
 
 function mapStateToProps(state) {
     return {
@@ -68,6 +70,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Home(props)
                     {programsList.map(item => <ShowProgram program={item}></ShowProgram>)}
                 </div>
             }
+            <MySwiper></MySwiper>
         </>
     );
 

@@ -39,7 +39,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(props) {
-    const [from] = useState(props.from);
     const [toID] = useState(props.to);
     const [toName] = useState(props.toName);
     let { id } = 0;
@@ -65,9 +64,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
         context: Yup.string(),
     })
     const handleSubmit = async (values) => {
+        debugger
         console.log(`${values.title} `)
         let aaa = {
-            FromUser: from,
+            FromUser: id,
             ToUser: toID || parseInt(values.to),
             Title: values.title,
             Content: values.context
@@ -100,11 +100,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
                         </div>
                     }
                     <div className="form-group">
-                      נושא  <Field placeholder="title" type="text" name="title" className="form-control" />
+                      נושא  <Field placeholder="נושא" type="text" name="title" className="form-control" />
                         <ErrorMessage name="title" component="div" />
                     </div>
                     <div className="form-group">
-                      תוכן  <Field placeholder="context" type="text" name="context" className="form-control" />
+                      תוכן  <Field  type="text" name="context" className="form-control" />
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Submit</button>
@@ -114,3 +114,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
         </div>
     );
 })
+/**
+ * programer: 101
+programerName:
+ */

@@ -20,9 +20,9 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps,mapDispatchToProps)( function Registration(props){
     const LoginSchema = Yup.object().shape({
-        userName: Yup.string().required('this feild is required'),
-        email: Yup.string().required('this feild is required').email('bad email'),
-        password: Yup.string().required('this feild is required')
+        userName: Yup.string().required('זהו שדה חובה'),
+        email: Yup.string().required('זהו שדה חובה').email('מייל לא תקין'),
+        password: Yup.string().required('זהו שדה חובה')
     })
     const handleSubmit = async (values) => {
         console.log(`${values.userName} ${values.email} ${values.password}`)
@@ -32,7 +32,7 @@ export default connect(mapStateToProps,mapDispatchToProps)( function Registratio
     }
     return (
         <>
-            <h1>Register</h1>
+            <h1>הרשמה</h1>
             <Formik
             initialValues={{userName:'', email: '', password: "" }}
             onSubmit={handleSubmit}
@@ -41,27 +41,27 @@ export default connect(mapStateToProps,mapDispatchToProps)( function Registratio
             >
                 <Form>
                     <div className="form-group">
-                        <Field placeholder="name" type="text" name="userName" className="form-control" />
+                        <Field placeholder="שם" type="text" name="userName" className="form-control" />
                         <ErrorMessage name="userName" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="email" type="email" name="email" className="form-control" />
+                        <Field placeholder="מייל" type="email" name="email" className="form-control" />
                         <ErrorMessage name="email" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="password" type="password" name="password" className="form-control" />
+                        <Field placeholder="סיסמא" type="password" name="password" className="form-control" />
                         <ErrorMessage name="password" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="phone" type="text" name="phone" className="form-control" />
+                        <Field placeholder="טלפון" type="text" name="phone" className="form-control" />
                         <ErrorMessage name="phone" component="div" />
                     </div>
                     <div className="form-group">
-                        <Field placeholder="address" type="text" name="address" className="form-control" />
+                        <Field placeholder="כתובת" type="text" name="address" className="form-control" />
                         <ErrorMessage name="address" component="div" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">הרשם</button>
                     </div>
                 </Form>
             </Formik>

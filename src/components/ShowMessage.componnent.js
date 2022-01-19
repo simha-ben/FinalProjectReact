@@ -11,13 +11,14 @@ export default function ShowMessage(props) {
     }
     return (
         message && <Card id='cadr' style={{ margin: '5px' }}>
-            <Card.Header>{message.fromUserName}
+            <Card.Header> מאת: {message.fromUserName}<br/>
+            אל:{message.toUserName}
                 <Card.Subtitle className="mb-2 text-muted">{message.date}</Card.Subtitle>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{message.title}</Card.Title>
                 <Card.Text>{message.content}</Card.Text>
-                <Button variant="primary" onClick={sendNewMessage}>send a message to this user</Button>
+                <Button variant="primary" onClick={sendNewMessage}> תשובה</Button>
                 {
                     sendNew && <NewMessage from={message.fromUser} to={message.toUser}/>
                 }

@@ -65,9 +65,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
     }
     return (
         <>
-            <h3>enter the program details</h3>
+            <h3>נא הכניסי את פרטי התוכנית
+                <br></br>
+                הפרטים יועברו למנהל המערכת ואם ימצא ראוי יוכנס למאגר :) 
+            </h3>
             <Formik
-                initialValues={{ProgramerName: UserName}}
+                initialValues={{ProgramerName: " מאת : "+UserName}}
                 validationSchema={LoginSchema}
                 onSubmit={ values => {
                      handleSubmit(values);
@@ -76,41 +79,44 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                  {({ errors, touched }) => (
                 <Form class="row row d-flex justify-content-center" >
                     <div class="col-5 ">
-                        <div className="form-group">
-                            <Field type="text"
-                                name="ProgramerName" className="form-control" />
-                            <ErrorMessage name="ProgramerName" component="div" />
+                    <div className="form-group">
+                            <Field placeholder="שם התוכנית" type="text" name="Title" className="form-control" />
+                            <ErrorMessage name="Title" component="div" />
                         </div>
-                        <Field name="Age" component={SelectField} options={allOptions["Age"]} />
-                        <Field name="SumOfParticipants"
-                         placeholder="Sum Of Participants" component={SelectField} 
-                         options={allOptions["SumOfParticipants"]} />
                         
                         <div className="form-group">
-                            <Field placeholder="Description" type="text" name="Description" className="form-control" />
+                            <Field placeholder="תאור"component="textarea" rows='4' type="text" name="Description" className="form-control" />
                             <ErrorMessage name="Description" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="Price" type="number" name="Price" className="form-control" />
+                            <Field type="text" placeholder="שם המפיק"
+                                name="ProgramerName" className="form-control" />
+                            <ErrorMessage name="ProgramerName" component="div" />
+                        </div>
+                        <Field name="Age" placeholder="מיועד לגיל" component={SelectField} options={allOptions["Age"]} />
+                        <Field name="SumOfParticipants"
+                         placeholder="כמות משתתפים" component={SelectField} 
+                         options={allOptions["SumOfParticipants"]} />
+                        
+                        
+                        <div className="form-group">
+                            <Field placeholder="מחיר" type="number" name="Price" className="form-control" />
                             <ErrorMessage name="Price" component="div" />
                         </div>
-                        <Field name="Subject" component={SelectField} 
+                        <Field name="Subject" placeholder="נושא" component={SelectField} 
                          options={allOptions["Subject"]} />
-                         <Field name="Migdar" component={SelectField} 
+                         <Field name="Migdar" placeholder="מתאים ל" component={SelectField} 
                          options={allOptions["Migdar"]} />
-                        <Field name="Language" component={SelectField} 
+                        <Field name="Language" placeholder="שפה"component={SelectField} 
                          options={allOptions["Language"]} />
                      
                         <div className="form-group">
-                            <Field placeholder="PublishDate" type="date" name="PublishDate" className="form-control" />
+                            <Field placeholder="תאריך יצירה" type="date" name="PublishDate" className="form-control" />
                             <ErrorMessage name="PublishDate" component="div" />
                         </div>
+                        
                         <div className="form-group">
-                            <Field placeholder="Title" type="text" name="Title" className="form-control" />
-                            <ErrorMessage name="Title" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field placeholder="photo" type="file" name="photo"className="form-control" />
+                            <Field placeholder="תמונה" type="file" name="photo"className="form-control" />
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">Submit</button>
