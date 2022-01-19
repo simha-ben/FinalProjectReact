@@ -8,6 +8,9 @@ const initialState = {
 const userFunc = {
     async setId(state, action) {
         state.id = action.payload;       
+    }, 
+    async signOut(state,action) {
+        state.id = action.payload;       
     },    
 }
 

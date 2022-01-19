@@ -82,7 +82,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
             <h3>hello {userName} :)</h3>
             <Button variant="primary" onClick={getSentdMeaasges}>נשלח</Button>{"   "}
             <Button variant="primary" onClick={getAcceptedMeaasges}>התקבל</Button>{"    "}
-            <Button variant="primary" onClick={createNewMessage}>הודעה חדשה</Button>
+            <Button variant="primary" >הניבחרים שלי יוצג בצד תמיד</Button>{"    "}
+            <Button variant="primary" onClick={createNewMessage}> אולי לבטל הודעה חדשה</Button>
             {
                 createNew &&<NewMessage from={id}/>                    
             }
