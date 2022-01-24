@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import SelectField from './SelectField';
 import ProgramService from '../services/Program.service';
+import DisConnectedAlert from './DisConnectedAlert';
 
 function mapStateToProps(state) {
     return {
@@ -53,14 +54,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
     }
     if (!id) {
         return (
-            < div>
-                <div className="alert alert-danger alert-dismissible">
-                    אווופס עדיין לא נכנסת למערכת
-                    <Link to="/Login" className="close" data-dismiss="alert" aria-label="close">&times;להתחברות/הרשמה לחץ כאן</Link>
-                    <strong></strong>
-
-                </div>
-            </div>
+           <DisConnectedAlert></DisConnectedAlert>
         )
     }
     return (

@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import ShowProgram from './ShowProgram.component';
 import MySwiper from './Swiper.component';
+import { Link } from 'react-router-dom'
+
 
 
 function mapStateToProps(state) {
@@ -27,14 +29,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Home(props)
     const [flag, setFlag] = useState(false);
 
     function filterProgram(value, type) {
-        
-       
-            let t = programs.filter((item) => item[type] == value)
-            if (t) {
-                setProgramList(t)
-                setFlag(true)
-            }
-        
+
+
+        let t = programs.filter((item) => item[type] == value)
+        if (t) {
+            setProgramList(t)
+            setFlag(true)
+        }
+
 
 
     }
@@ -50,27 +52,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Home(props)
                     <Tab eventKey="home" title="חיפוש לפי נושא">
                         <div>
                             {kategories && kategories.map((v, i) => (
-                                <Button onClick={() => filterProgram(v, 'type')}
-                                >{v}
-                                </Button>))
+                                <Button variant="primary">
+                                    <Link to="/allProduct" state={{ fromHome: { key: 'type', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
+                                        {v}</Link>
+                                </Button>
+                            ))
                             }
                         </div>
                     </Tab>
                     <Tab eventKey="profile" id='tab' title="חיפוש לפי שכבת גיל">
                         <div>
                             {migdar && migdar.map((v, i) => (
-                                <Button onClick={() => filterProgram(v, 'migdar')}>{v}</Button>
+                                <Button variant="primary">
+                                <Link to="/allProduct" state={{ fromHome: { key: 'migdar', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
+                                    {v}</Link>
+                            </Button>
                             ))
                             }</div>
                     </Tab>
                 </Tabs>
-            </div>
+            </div >
             {
-                flag && <div>
+                flag && <div style={{ 'margin-bottom': '30vh' }}>
                     {programsList.map(item => <ShowProgram program={item}></ShowProgram>)}
                 </div>
             }
-            <MySwiper></MySwiper>
+            <div>
+                <MySwiper></MySwiper>
+            </div>
         </>
     );
 

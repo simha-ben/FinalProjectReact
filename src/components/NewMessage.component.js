@@ -5,6 +5,7 @@ import MessageService from '../services/Message.service';
 import { connect } from 'react-redux';
 import { Alert, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import DisConnectedAlert from './DisConnectedAlert';
 /**
  * 
  * @param {function AlertDismissibleExample() {
@@ -48,13 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
 
     if (id == null) {
         return (
-            <Alert variant="danger">
-                <div className="alert alert-danger alert-dismissible">
-                    אווופס עדיין לא נכנסת למערכת
-                    <Link to="/Login" className="close" data-dismiss="alert" aria-label="close">להתחברות/הרשמה לחץ כאן</Link>
-                    <strong></strong>
-                </div>
-            </Alert>
+            <DisConnectedAlert></DisConnectedAlert>
         )
     }
 

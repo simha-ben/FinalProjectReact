@@ -8,8 +8,7 @@ import Select from 'react-select'
 import { Input } from 'bootstrap'
 import makeAnimated from 'react-select/animated'
 import MultySelect from './multiSelect';
-import { setNestedObjectValues } from 'formik';
-
+import { useLocation } from "react-router-dom";
 
 function mapStateToProps(state) {
     return {
@@ -17,23 +16,24 @@ function mapStateToProps(state) {
         id: state.UserReducer.id,
     };
 }
-function mapDispatchToProps(dispatch) {
 
-    return {
-        // addProductToCart: (i) => dispatch(actions.addProductToCart(i)),
-
-    };
-}
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connect(mapStateToProps)
     (function AllProduct(props) {
-
+        const location = useLocation();
+        const { fromHome } = location.state || {};
         const price = useRef(200);
         // let { programs } = props;
         const [programs] = useState([...props.programs]);
         const [viewPrograms, setViewPrograms] = useState([...props.programs]);
         const [selectedValues, setSlectedValues] = useState({});
 
-
+        useEffect(() => {
+            debugger;
+            if (fromHome) {
+                saveOptions(fromHome)
+                filter()
+            }
+        }, [])
         function saveOptions(e) {
             selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
@@ -71,11 +71,11 @@ export default connect(mapStateToProps, mapDispatchToProps)
                         </div>
                         <div className='col-3'>
                             <Button onClick={filter}>סנן</Button>
-                            <MultySelect tableName={'Age'} onSelect={saveOptions}title="מיועד לגיל"></MultySelect>
-                            <MultySelect tableName={'Language'} onSelect={saveOptions}title="שפה"></MultySelect>
+                            <MultySelect tableName={'Age'} onSelect={saveOptions} title="מיועד לגיל"></MultySelect>
+                            <MultySelect tableName={'Language'} onSelect={saveOptions} title="שפה"></MultySelect>
                             <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
                             <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
-                            <MultySelect tableName={'Subject'} onSelect={saveOptions}title="נושא"></MultySelect>
+                            <MultySelect tableName={'Subject'} onSelect={saveOptions} title="נושא"></MultySelect>
 
                             up to:  <input type="number" ref={price} />
                             {/*                             

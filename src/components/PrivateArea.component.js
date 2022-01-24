@@ -7,6 +7,9 @@ import MessageService from '../services/Message.service';
 import ShowMessage from './ShowMessage.componnent'
 import { Link } from 'react-router-dom';
 import NewMessage from './NewMessage.component';
+import { useNavigate, } from 'react-router-dom'
+import DisConnectedAlert from './DisConnectedAlert';
+
 
 function mapStateToProps(state) {
     return {
@@ -20,38 +23,30 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea(props) {
-    // const [sentMessage, setSentMeaasge] = useState([]);
     const [Messages, setMeaasges] = useState([]);
     const [userName, setUserName] = useState(" ");
     let { id } = props;
-    const [createNew,setCreateNew]=useState(false);
+    const [createNew, setCreateNew] = useState(false);
     useEffect(
         async () => {
             if (id) {
                 let name = await UserService.getNameById(id);
-                
+
                 setUserName(name);
             }
         }, []
     )
     if (!id) {
         return (
-            < div>
-                <div className="alert alert-danger alert-dismissible">
-                    אווופס עדיין לא נכנסת למערכת
-                    <Link to="/Login" className="close" data-dismiss="alert" aria-label="close">&times;להתחברות/הרשמה לחץ כאן</Link>
-                    <strong></strong>
-
-                </div>
-            </div>
+            <DisConnectedAlert></DisConnectedAlert>
         )
     }
 
     async function getAcceptedMeaasges() {
         try {
-            
+
             let p = await MessageService.getMessages('accepted', id);
-            
+
             setMeaasges(p);
             // alert(acceptedMessage)
             console.log(p);
@@ -62,9 +57,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
     }
     async function getSentdMeaasges() {
         try {
-            
+
             let p = await MessageService.getMessages('sent', id);
-            
+
             setMeaasges(p);
             // alert(acceptedMessage)
             console.log(p);
@@ -73,9 +68,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
             console.log(err);
         }
     }
-   function createNewMessage(){
-    setCreateNew(!createNew)
-   }
+    function createNewMessage() {
+        setCreateNew(!createNew)
+    }
 
     return (
         <>
@@ -85,7 +80,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
             <Button variant="primary" >הניבחרים שלי יוצג בצד תמיד</Button>{"    "}
             <Button variant="primary" onClick={createNewMessage}> אולי לבטל הודעה חדשה</Button>
             {
-                createNew &&<NewMessage from={id}/>                    
+                createNew && <NewMessage from={id} />
             }
             {
                 Messages && Messages.map((m) =>

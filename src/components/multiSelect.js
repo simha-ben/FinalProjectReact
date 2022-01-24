@@ -10,11 +10,8 @@ function mapStateToProps(state) {
         fields: state.ProgramReducer.optionSetValues
     };
 }
-function mapDispatchToProps(dispatch) {
-    return {};
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(function MultySelect(props) {
+export default connect(mapStateToProps)(function MultySelect(props) {
 
     let { tableName, fields } = props;
 
