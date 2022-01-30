@@ -59,7 +59,7 @@ export default connect(mapStateToProps)(function Home(props) {
             <div>
                 כמות התוכניות שלנווווו
       
-      <Counter max={'100'}></Counter>
+      <Counter max={programs?.length?programs.length:54}></Counter>
             </div>
         </>
     );

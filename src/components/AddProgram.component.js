@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(props) {
 
-    const [UserName, setUserName] = useState("שרה")
+    const [UserName, setUserName] = useState("")
     const [file, setFile] = useState()
     let { id, allOptions } = props;
     // useEffect(
@@ -119,7 +119,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                             </div>
                             <Field name="Subject" placeholder="נושא" component={SelectField}
                                 options={allOptions["Subject"]} />
-                            <Field name="Migdar" placeholder="מתאים ל" component={SelectField}
+                            <Field name="Type" placeholder="סוג ההפעלה" component={SelectField}
+                                options={allOptions["Type"]} />
+                                <Field name="Migdar" placeholder="מתאים ל" component={SelectField}
                                 options={allOptions["Migdar"]} />
                             <Field name="Language" placeholder="שפה" component={SelectField}
                                 options={allOptions["Language"]} />
@@ -130,8 +132,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                             </div>
 
                             <div className="form-group">
-                            <input type={'file'}onChange={(event)=>setFile({ file: event.target.files[0] })} name='file'></input>
-                                {/* <Field placeholder="תמונה" type="file" name="file" onChange={(event)=>setFile({ file: event.target.files[0] })} className="form-control" /> */}
+                            {/* <input type={'file'}onChange={(event)=>setFile({ file: event.target.files[0] })} name='file'></input> */}
+                                <Field placeholder="תמונה" type="file" name="file" onChange={(event)=>setFile({ file: event.target.files[0] })} className="form-control" />
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary">Submit</button>
