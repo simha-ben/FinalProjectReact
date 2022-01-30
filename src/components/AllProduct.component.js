@@ -54,7 +54,10 @@ export default connect(mapStateToProps)
                     show = false
                 return show;
             });
-            setViewPrograms(arr);
+            if (arr.length > 0)
+                setViewPrograms(arr);
+            else
+                alert('אין מוצרים בקטגוריה זו')
         };
 
 

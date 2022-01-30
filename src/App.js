@@ -12,6 +12,7 @@ import RegistrationComponent from './components/Registration.component';
 import NewMessage from './components/NewMessage.component';
 import multiSelect from './components/multiSelect';
 import ProgramDetailes from './components/ProgramDetailes';
+import Footer from './components/Footet.component';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route exact element={<ProgramDetailes />} path="/programDetailes" />
         <Route exact element={<Home />} path="/" />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
