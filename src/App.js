@@ -13,6 +13,9 @@ import NewMessage from './components/NewMessage.component';
 import multiSelect from './components/multiSelect';
 import ProgramDetailes from './components/ProgramDetailes';
 import Footer from './components/Footet.component';
+import Counter from './components/Counter.component';
+
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
         <Route exact element={<Home />} path="/" />
       </Routes>     
       <Footer></Footer>
+      
+     {/* <Home></Home> */}
     </div>
   );
 }

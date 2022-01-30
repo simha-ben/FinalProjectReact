@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import MySwiper from './Swiper.component';
 import { Link } from 'react-router-dom'
+import Counter from './Counter.component';
+// import Counter from './CounterAnimation';
 
 function mapStateToProps(state) {
     return {
@@ -53,6 +55,11 @@ export default connect(mapStateToProps)(function Home(props) {
                 <br></br>
                 <h3>החדשים שלנו</h3>
                 <MySwiper></MySwiper>
+            </div>
+            <div>
+                כמות התוכניות שלנווווו
+      
+      <Counter max={'100'}></Counter>
             </div>
         </>
     );
