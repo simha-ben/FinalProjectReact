@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import {connect} from 'react-redux'
 import { actions } from '../redux/Action';
 import UserService from '../services/User.service';
+import { useNavigate } from 'react-router-dom'
 
 function mapStateToProps(state) {
     return {
@@ -19,16 +20,29 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)( function Registration(props){
+    const nevigate = useNavigate();
+       
+   
     const LoginSchema = Yup.object().shape({
         userName: Yup.string().required('זהו שדה חובה'),
         email: Yup.string().required('זהו שדה חובה').email('מייל לא תקין'),
         password: Yup.string().required('זהו שדה חובה')
     })
     const handleSubmit = async (values) => {
-        console.log(`${values.userName} ${values.email} ${values.password}`)
+        try{
+         console.log(`${values.userName} ${values.email} ${values.password}`)
         let token= await UserService.addNewUser(values)
         props.updateId(token);
         console.log("regisrer ststus is: "+token);
+        if(token){
+            alert('הרשמה הסתיימה בהצלחה')
+            nevigate(-1)
+        }
+        }
+        catch(err){
+
+        }
+        
     }
     return (
         <>

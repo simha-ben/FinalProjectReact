@@ -15,12 +15,13 @@ function mapStateToProps(state) {
     };
 }
 function mapDispatchToProps(dispatch) {
-    return { };
+    return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(props) {
 
     const [UserName, setUserName] = useState("שרה")
+    const [file, setFile] = useState()
     let { id, allOptions } = props;
     // useEffect(
     //     async () => {
@@ -43,82 +44,102 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         Type: Yup.string(),//.required('this feild is required'),
         Age: Yup.string(),//.required,//('this feild is required'),
         Language: Yup.string(),//.required('this feild is required')
-        photo:"",//.required('this feild is required')
+        //file:new File(["foo"], "foo.txt")//new File([""], "")// Yup.file(),//.required('this feild is required')
     })
     const handleSubmit = async (values) => {
-        
+        debugger
+        values.file=file; 
+        values.Programer = id;
+        const formData = new FormData()
+        if(values.file){
+            formData.append('FormFile',values.file.file)
+            formData.append('FileName',values.file.file.name)
+        }
         console.log(values);
-        values.Programer=id;
-        let token = await ProgramService.addNewProgram(values);
-        console.log("regisrer ststus is: " + token);
+       
+        try {
+            formData.append('jsonString',JSON.stringify(values))
+            let token = await ProgramService.addNewProgram(formData);
+            if (token > 0) {
+                alert('התוכנית  נשלחה למנהל לאישור')
+            }
+            else {
+                alert('ארעה שגיאה נא נסה שנית')
+            }
+        }
+        catch (err) {
+            alert(err.message)
+        }
+
     }
     if (!id) {
         return (
-           <DisConnectedAlert></DisConnectedAlert>
+            <DisConnectedAlert></DisConnectedAlert>
         )
     }
     return (
         <>
             <h3>נא הכניסי את פרטי התוכנית
                 <br></br>
-                הפרטים יועברו למנהל המערכת ואם ימצא ראוי יוכנס למאגר :) 
+                הפרטים יועברו למנהל המערכת ואם ימצא ראוי יוכנס למאגר :)
             </h3>
             <Formik
-                initialValues={{ProgramerName: " מאת : "+UserName}}
+                initialValues={{ ProgramerName:UserName }}
                 validationSchema={LoginSchema}
-                onSubmit={ values => {
-                     handleSubmit(values);
-                     }}
+                onSubmit={values => {
+                    handleSubmit(values);
+                }}
             >
-                 {({ errors, touched }) => (
-                <Form class="row row d-flex justify-content-center" >
-                    <div class="col-5 ">
-                    <div className="form-group">
-                            <Field placeholder="שם התוכנית" type="text" name="Title" className="form-control" />
-                            <ErrorMessage name="Title" component="div" />
+                {({ errors, touched }) => (
+                    <Form class="row row d-flex justify-content-center" >
+                        <div class="col-5 ">
+                            <div className="form-group">
+                                <Field placeholder="שם התוכנית" type="text" name="Title" className="form-control" />
+                                <ErrorMessage name="Title" component="div" />
+                            </div>
+
+                            <div className="form-group">
+                                <Field placeholder="תאור" component="textarea" rows='4' type="text" name="Description" className="form-control" />
+                                <ErrorMessage name="Description" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <Field type="text" placeholder="שם המפיק"
+                                    name="ProgramerName" className="form-control" />
+                                <ErrorMessage name="ProgramerName" component="div" />
+                            </div>
+                            <Field name="Age" placeholder="מיועד לגיל" component={SelectField} options={allOptions["Age"]} />
+                            <Field name="SumOfParticipants"
+                                placeholder="כמות משתתפים" component={SelectField}
+                                options={allOptions["SumOfParticipants"]} />
+
+
+                            <div className="form-group">
+                                <Field placeholder="מחיר" type="number" name="Price" className="form-control" />
+                                <ErrorMessage name="Price" component="div" />
+                            </div>
+                            <Field name="Subject" placeholder="נושא" component={SelectField}
+                                options={allOptions["Subject"]} />
+                            <Field name="Migdar" placeholder="מתאים ל" component={SelectField}
+                                options={allOptions["Migdar"]} />
+                            <Field name="Language" placeholder="שפה" component={SelectField}
+                                options={allOptions["Language"]} />
+
+                            <div className="form-group">
+                                <Field placeholder="תאריך יצירה" type="date" name="PublishDate" className="form-control" />
+                                <ErrorMessage name="PublishDate" component="div" />
+                            </div>
+
+                            <div className="form-group">
+                            <input type={'file'}onChange={(event)=>setFile({ file: event.target.files[0] })} name='file'></input>
+                                {/* <Field placeholder="תמונה" type="file" name="file" onChange={(event)=>setFile({ file: event.target.files[0] })} className="form-control" /> */}
+                            </div>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
                         </div>
-                        
-                        <div className="form-group">
-                            <Field placeholder="תאור"component="textarea" rows='4' type="text" name="Description" className="form-control" />
-                            <ErrorMessage name="Description" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field type="text" placeholder="שם המפיק"
-                                name="ProgramerName" className="form-control" />
-                            <ErrorMessage name="ProgramerName" component="div" />
-                        </div>
-                        <Field name="Age" placeholder="מיועד לגיל" component={SelectField} options={allOptions["Age"]} />
-                        <Field name="SumOfParticipants"
-                         placeholder="כמות משתתפים" component={SelectField} 
-                         options={allOptions["SumOfParticipants"]} />
-                        
-                        
-                        <div className="form-group">
-                            <Field placeholder="מחיר" type="number" name="Price" className="form-control" />
-                            <ErrorMessage name="Price" component="div" />
-                        </div>
-                        <Field name="Subject" placeholder="נושא" component={SelectField} 
-                         options={allOptions["Subject"]} />
-                         <Field name="Migdar" placeholder="מתאים ל" component={SelectField} 
-                         options={allOptions["Migdar"]} />
-                        <Field name="Language" placeholder="שפה"component={SelectField} 
-                         options={allOptions["Language"]} />
-                     
-                        <div className="form-group">
-                            <Field placeholder="תאריך יצירה" type="date" name="PublishDate" className="form-control" />
-                            <ErrorMessage name="PublishDate" component="div" />
-                        </div>
-                        
-                        <div className="form-group">
-                            <Field placeholder="תמונה" type="file" name="photo"className="form-control" />
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                    
-                </Form>
-                 )}
+
+                    </Form>
+                )}
             </Formik>
         </>
     );

@@ -33,7 +33,7 @@ export default connect(mapStateToProps)
                 saveOptions(fromHome)
                 filter()
             }
-        }, [])
+        }, [programs])
         function saveOptions(e) {
             selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
