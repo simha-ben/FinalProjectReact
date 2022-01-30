@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import UserService from '../services/User.service';
+import '../style/Footer.css'
 export default function Footer() {
 
     const [error, setError] = useState(null);
