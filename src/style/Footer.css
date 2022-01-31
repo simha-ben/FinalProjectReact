@@ -1,3 +1,35 @@
-div{
-    margin-bottom: 0px;
-}
+/* 
+  .content {
+    min-height: 100%;
+  }
+  
+  .footer {
+    height: 50px;
+    margin-top: -50px;
+  } */
+
+  /* .footer {
+    grid-row-start: 2;
+    grid-row-end: 3;
+  } */
+  footer{
+    /* עובד יחסית הכי בסדר
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/ 
+/*height: 40px;
+    background: grey; */
+    /* clear: both;
+    /* position: relative; */
+  /*  height: 50px;
+    margin-top: -50px; */
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(235, 195, 64);
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }

@@ -14,19 +14,19 @@ function mapStateToProps(state) {
     return {
         kategories: state.ProgramReducer.optionSetValues["Type"],
         migdar: state.ProgramReducer.optionSetValues["Migdar"],
-       // programs: state.ProgramReducer.programs,
+        // programs: state.ProgramReducer.programs,
     };
 }
 
 export default connect(mapStateToProps)(function Home(props) {
 
     let { kategories, migdar, programs } = props;
- 
+
     return (
-        <>
+        <div>
             <Search></Search>
             <h2>מיין תוצאות לפי:</h2>
-              <div className="border rounded" >
+            <div className="border rounded" >
                 <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                     <Tab eventKey="home" title="חיפוש לפי נושא">
                         <div>
@@ -43,9 +43,9 @@ export default connect(mapStateToProps)(function Home(props) {
                         <div>
                             {migdar && migdar.map((v, i) => (
                                 <Button variant="primary">
-                                <Link to="/allProduct" state={{ fromHome: { key: 'migdar', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
-                                    {v}</Link>
-                            </Button>
+                                    <Link to="/allProduct" state={{ fromHome: { key: 'migdar', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
+                                        {v}</Link>
+                                </Button>
                             ))
                             }</div>
                     </Tab>
@@ -58,10 +58,9 @@ export default connect(mapStateToProps)(function Home(props) {
             </div>
             <div>
                 כמות התוכניות שלנווווו
-      
-      <Counter max={programs?.length?programs.length:54}></Counter>
+                <Counter max={54}></Counter>
             </div>
-        </>
+        </div>
     );
 
 })

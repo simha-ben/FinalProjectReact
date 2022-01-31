@@ -33,7 +33,9 @@ export default function About() {
     // }, [])
     return (
         <>
-            <h1>About</h1>
+            {/* <div style={{height:"80vh"}}> */}
+                 <h1>About</h1>
+            {/* </div> */}
         </>
     )
     // if (error) {

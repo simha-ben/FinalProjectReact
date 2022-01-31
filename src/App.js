@@ -34,9 +34,7 @@ function App() {
         <Route exact element={<ProgramDetailes />} path="/programDetailes" />
         <Route exact element={<Home />} path="/" />
       </Routes>     
-      <Footer></Footer>
-      
-    
+      <Footer></Footer>   
     </div>
   );
 }

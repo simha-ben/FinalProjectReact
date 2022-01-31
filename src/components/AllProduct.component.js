@@ -63,7 +63,7 @@ export default connect(mapStateToProps)
 
         return (
             <>
-                <div className='ctainer'>
+                {/* <div className='ctainer'> */}
                     <div className='row'> <h1>המוצרים שלנו</h1></div>
                     <div className='row'>
                         <div className='col-9'>
@@ -92,7 +92,7 @@ export default connect(mapStateToProps)
 
                         </div>
                     </div>
-                </div>
+                {/* </div> */}
 
 
             </>
