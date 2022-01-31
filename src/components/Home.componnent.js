@@ -8,6 +8,7 @@ import { Button } from 'react-bootstrap'
 import MySwiper from './Swiper.component';
 import { Link } from 'react-router-dom'
 import Counter from './Counter.component';
+import { MDBBtn } from 'mdb-react-ui-kit';
 // import Counter from './CounterAnimation';
 
 function mapStateToProps(state) {
@@ -25,14 +26,14 @@ export default connect(mapStateToProps)(function Home(props) {
     return (
         <div>
             <Search></Search>
-            <h2>מיין תוצאות לפי:</h2>
+            <h2 style={{fontFamily:'Ariel !important'}}>מיין תוצאות לפי:</h2>
             <div className="border rounded" >
                 <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                     <Tab eventKey="home" title="חיפוש לפי נושא">
                         <div>
-                            {kategories && kategories.map((v, i) => (
-                                <Button variant="primary">
-                                    <Link to="/allProduct" state={{ fromHome: { key: 'type', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
+                            {kategories && kategories.map((v, i) => (                                
+                                <Button style={{backgroundColor:'#fff' ,borderColor:'rgb(41, 151, 161)',margin:'3px'}}>
+                                    <Link to="/allProduct" state={{ fromHome: { key: 'type', value: [{ value: v, label: v }] } }} style={{ color: 'red' }}>
                                         {v}</Link>
                                 </Button>
                             ))
@@ -42,8 +43,8 @@ export default connect(mapStateToProps)(function Home(props) {
                     <Tab eventKey="profile" id='tab' title="חיפוש לפי שכבת גיל">
                         <div>
                             {migdar && migdar.map((v, i) => (
-                                <Button variant="primary">
-                                    <Link to="/allProduct" state={{ fromHome: { key: 'migdar', value: [{ value: v, label: v }] } }} style={{ color: 'white' }}>
+                                <Button variant="primary" style={{backgroundColor:'#fff' ,borderColor:'rgb(41, 151, 161)',margin:'3px'}}>
+                                    <Link to="/allProduct" state={{ fromHome: { key: 'migdar', value: [{ value: v, label: v }] } }} style={{ color: 'red' }}>
                                         {v}</Link>
                                 </Button>
                             ))

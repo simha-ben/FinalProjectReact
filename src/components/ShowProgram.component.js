@@ -36,7 +36,7 @@ export default function ShowProgram(props) {
 
     return (
         <div id='showProgram'>
-            <Card  style={{ margin: '5px' }}>
+            <Card  style={{ margin: '5px',border:'1px red solid' }}>
                 <Card.Img variant="top" src={'http://localhost:63312/' + program.img} style={{ width: '100%', height: '12rem' }} />
                 <Card.Body>
                     <Card.Title>{program.title}</Card.Title>

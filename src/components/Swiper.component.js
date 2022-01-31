@@ -59,8 +59,8 @@ export default connect(mapStateToProps, mapDispatchToProps)
                 >
                     {
                         newest && newest.map((item, index) => (
-                            < SwiperSlide style={{ backgroundColor: '#eee'}}>
-                                <span style={{marginTop:'-100px',width:'100%',height:'100%'}}>
+                            < SwiperSlide >
+                                <span style={{marginTop:'10px',paddingRight:'40px',width:'100%',height:'100%'}}>
                                     <ShowProgram program={item} ></ShowProgram >
                                 </span>
                             </SwiperSlide>
