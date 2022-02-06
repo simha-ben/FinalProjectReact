@@ -29,36 +29,14 @@ export default connect(mapStateToProps, mapDispatchToProps)
         const [newM, setnewM] = useState(false);
         const [TO, setTO] = useState(0);
         const [toName, setToName] = useState('');
-        const [favorite, setFavorite] = useState(false);
-        const [favoriteList, setFavoriteList] = useState(JSON.parse(localStorage.getItem('favorite')) || [])//(JSON.parse(localStorage.getItem('favorite')));
-
         const location = useLocation();
         const { id } = location.state;
 
         useEffect(() => {
             let p = programList.find((p) => p.id == id);
             setP(p);
-            let index = localStorage.getItem('favorite').indexOf(program.id);
-            if (index > 0) {
-                setFavorite(true);
-            }
 
         }, [props.program]);
-
-        function like() {
-            if (favorite) {
-                let arr = null//favoriteList[favoriteList.length]=program.id            
-                setFavoriteList(arr)
-                localStorage.setItem("favorite", JSON.stringify(arr));
-                // localStorage.setItem('favorite', null);
-            }
-            else {
-                setFavoriteList(program.id)
-                localStorage.setItem("favorite", JSON.stringify(favoriteList));
-                // localStorage.setItem('favorite', program.id);
-            }
-            setFavorite(!favorite)
-        }
 
         return (
             <>

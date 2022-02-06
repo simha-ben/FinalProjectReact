@@ -35,11 +35,11 @@ export default connect(mapStateToProps)(function Home(props) {
         <div>
             {/* <Search></Search> */}
             <div>
-                <input placeholder='אני מחפש/ת...'  ref={wordToSearch}></input>
-                {/* <Button onClick={searchMe} > */}
-                     <Link  onClick={()=>{
+                <input placeholder='אני מחפש/ת...'  ref={wordToSearch} onChange={()=>{
                          setSearch(wordToSearch.current.value)
-                     }} to="/search" state={{ fromHome: search}} > 
+                     }}></input>
+                {/* <Button onClick={searchMe} > */}
+                     <Link to="/search" state={{ fromHome: search}} > 
                     מצא אותי
                          </Link>
                 {/* </Button> */}

@@ -7,29 +7,30 @@ import '../style/ShowProgram.css'
 export default function ShowProgram(props) {
     const [program, setP] = useState(props.program);
     const [favorite, setFavorite] = useState(false);
-    const [favoriteList, setFavoriteList] = useState(JSON.parse(localStorage.getItem('favorite')) || [])//(JSON.parse(localStorage.getItem('favorite')));
+   // const [favoriteList, setFavoriteList] = useState(JSON.parse(localStorage.getItem('favorite')) || [])//(JSON.parse(localStorage.getItem('favorite')));
     const nevigate=useNavigate();
 
     useEffect(() => {
         setP(props.program);
-        let index = localStorage.getItem('favorite').indexOf(program.id);
-        if (index > 0) {
+        let fav =  localStorage.getItem('favorite');
+        if(fav && fav.indexOf(program.id)> -1){
             setFavorite(true);
         }
 
     }, [props.program]);
 
     function like() {
+        let arr = JSON.parse(localStorage.getItem('favorite')) || [];
         if (favorite) {
-            let arr = null//favoriteList[favoriteList.length]=program.id            
-            setFavoriteList(arr)
-            localStorage.setItem("favorite", JSON.stringify(arr));
-            // localStorage.setItem('favorite', null);
+           
+         arr.splice(arr.indexOf(program.id),1);          
+        localStorage.setItem("favorite", JSON.stringify(arr));
+            
         }
         else {
-            setFavoriteList(program.id)
-            localStorage.setItem("favorite", JSON.stringify(favoriteList));
-            // localStorage.setItem('favorite', program.id);
+            arr.push(program.id);
+            localStorage.setItem("favorite", JSON.stringify(arr));
+         
         }
         setFavorite(!favorite)
     }
@@ -56,7 +57,7 @@ export default function ShowProgram(props) {
                         style={{ marginBottom: 10, marginTop: 20 }}
                         onClick={like}></BsHeart>
                     <Card.Text >
-                        {favorite ? 'Remove from favorite' : 'Add to favorite'}
+                        {favorite ? 'הסר ממועדפים' : 'הוסף למועדפים'}
                     </Card.Text>
                 </Card.Body>
             </Card>
