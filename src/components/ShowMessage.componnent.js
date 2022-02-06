@@ -1,14 +1,17 @@
 // import '../style/ShowMessage.scss'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap'
 import NewMessage from './NewMessage.component';
 
 export default function ShowMessage(props) {
-    const [message] = useState(props.message);
+    const [message,setMessage] = useState(props.message);
     const [sendNew, setSendNew] = useState(false)
     function sendNewMessage() {
         setSendNew(!sendNew)
     }
+    useEffect(() => {
+         setMessage(props.message);
+    }, [props.message]);
     return (
         message && <Card id='cadr' style={{ margin: '5px' }}>
             <Card.Header> מאת: {message.fromUserName}<br/>

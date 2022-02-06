@@ -41,7 +41,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
         }
     } 
     return (
-        <>
+        <div  style={{minHeight:'73vh'}}>
             <Formik
             initialValues={{userName:'', email: '', password: "" }}
             onSubmit={handleSubmit}
@@ -76,6 +76,6 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
                 
              לקוח חדש? הרשם  <a href='/registration'>כאן</a>
             </div>
-        </>
+        </div>
     );
 })

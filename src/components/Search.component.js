@@ -39,7 +39,7 @@ export default connect(mapStateToProps)(function Search(props) {
         }
     }, [])
     return (
-        <>
+        <div  style={{minHeight:'73vh'}}>
             <form onSubmit={search}>
                 <div>
                     <label>
@@ -56,7 +56,7 @@ export default connect(mapStateToProps)(function Search(props) {
                 }
             </form>
 
-        </>
+        </div>
     );
 })
 

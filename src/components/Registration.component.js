@@ -35,12 +35,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
             let token = await UserService.addNewUser(values)
             props.updateId(token);
             console.log("regisrer ststus is: " + token);
-            if (token>0) {
+            if (token > 0) {
                 swal("ההרשמה הסתיימה בהצלחה", "ברוכים הבאים :)", "success")
                 nevigate(-1)
             }
-            if(token==-1){
-                swal("הרשמה נכשלה כבר קיים במערכת כזה משתמש " ," נסה שם משתמש אחר או מייל שונה","error")
+            if (token == -1) {
+                swal("הרשמה נכשלה כבר קיים במערכת כזה משתמש ", " נסה שם משתמש אחר או מייל שונה", "error")
             }
         }
         catch (err) {
@@ -49,40 +49,43 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
 
     }
     return (
-        <>
+        <div  style={{minHeight:'73vh'}}>
             <h1>הרשמה</h1>
+
             <Formik
                 initialValues={{ userName: '', email: '', password: "" }}
                 onSubmit={handleSubmit}
                 validationSchema={LoginSchema}
 
             >
-                <Form>
-                    <div className="form-group">
-                        <Field placeholder="שם" type="text" name="userName" className="form-control" />
-                        <ErrorMessage name="userName" component="div" />
-                    </div>
-                    <div className="form-group">
-                        <Field placeholder="מייל" type="email" name="email" className="form-control" />
-                        <ErrorMessage name="email" component="div" />
-                    </div>
-                    <div className="form-group">
-                        <Field placeholder="סיסמא" type="password" name="password" className="form-control" />
-                        <ErrorMessage name="password" component="div" />
-                    </div>
-                    <div className="form-group">
-                        <Field placeholder="טלפון" type="text" name="phone" className="form-control" />
-                        <ErrorMessage name="phone" component="div" />
-                    </div>
-                    <div className="form-group">
-                        <Field placeholder="כתובת" type="text" name="address" className="form-control" />
-                        <ErrorMessage name="address" component="div" />
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary">הרשם</button>
-                    </div>
-                </Form>
+                <div class="row d-flex justify-content-center">
+                    <Form class="col-4">
+                        <div className="form-group">
+                            <Field placeholder="שם" type="text" name="userName" className="form-control" />
+                            <ErrorMessage name="userName" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <Field placeholder="מייל" type="email" name="email" className="form-control" />
+                            <ErrorMessage name="email" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <Field placeholder="סיסמא" type="password" name="password" className="form-control" />
+                            <ErrorMessage name="password" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <Field placeholder="טלפון" type="text" name="phone" className="form-control" />
+                            <ErrorMessage name="phone" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <Field placeholder="כתובת" type="text" name="address" className="form-control" />
+                            <ErrorMessage name="address" component="div" />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary">הרשם</button>
+                        </div>
+                    </Form>
+                </div>
             </Formik>
-        </>
+        </div>
     );
 })

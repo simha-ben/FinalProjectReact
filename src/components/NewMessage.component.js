@@ -102,7 +102,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
                       תוכן  <Field  type="text" name="context" className="form-control" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">שלח</button>
                     </div>
                 </Form>
             </Formik>

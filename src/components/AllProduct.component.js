@@ -64,9 +64,10 @@ export default connect(mapStateToProps)
 
         return (
             <>
-                {/* <div className='ctainer'> */}
-                    <div className='row'> <h1>המוצרים שלנו</h1></div>
-                    <div className='row'>
+            <br></br>
+            <br></br>
+            <br></br>
+             <div className='row'>
                         <div className='col-9'>
                             {
                                 viewPrograms && viewPrograms.map((v, i) => (
