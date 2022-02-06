@@ -9,6 +9,7 @@ import { Input } from 'bootstrap'
 import makeAnimated from 'react-select/animated'
 import MultySelect from './multiSelect';
 import { useLocation } from "react-router-dom";
+import swal from 'sweetalert'
 
 function mapStateToProps(state) {
     return {
@@ -57,7 +58,7 @@ export default connect(mapStateToProps)
             if (arr.length > 0)
                 setViewPrograms(arr);
             else
-                alert('אין מוצרים בקטגוריה זו')
+            swal("אין מוצרים בקטגוריה זו")
         };
 
 

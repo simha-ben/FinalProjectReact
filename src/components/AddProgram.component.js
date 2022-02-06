@@ -7,6 +7,7 @@ import Select from 'react-select';
 import SelectField from './SelectField';
 import ProgramService from '../services/Program.service';
 import DisConnectedAlert from './DisConnectedAlert';
+import swal from 'sweetalert'
 
 function mapStateToProps(state) {
     return {
@@ -61,10 +62,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
             formData.append('jsonString',JSON.stringify(values))
             let token = await ProgramService.addNewProgram(formData);
             if (token > 0) {
-                alert('התוכנית  נשלחה למנהל לאישור')
+                swal("התוכנית נכנסה למערכת", `הפרטים נשלחו למהנל לאישור`, "success")
             }
             else {
-                alert('ארעה שגיאה נא נסה שנית')
+                swal("ארעה שגיאה במהלך רישום התוכנית", `נסה שוב`, "error")
             }
         }
         catch (err) {

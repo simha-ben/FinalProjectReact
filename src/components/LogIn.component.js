@@ -5,6 +5,7 @@ import UserService from '../services/User.service';
 import {connect} from 'react-redux'
 import { useNavigate ,} from 'react-router-dom'
 import { actions } from '../redux/Action';
+import swal from 'sweetalert'
 
 function mapStateToProps(state) {
     return {
@@ -36,7 +37,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
             nevigate(-1);
         }
         else{
-            alert("we're sorry, but we cannot let you in :( please try agin")
+            swal("שגיאה בהזנת הנתונים ","נסה שוב שים לב לשפת המקלדת",'error')
         }
     } 
     return (

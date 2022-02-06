@@ -1,56 +1,60 @@
 import React from 'react';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { actions } from '../redux/Action';
 import UserService from '../services/User.service';
 import { useNavigate } from 'react-router-dom'
+import swal from 'sweetalert'
 
 function mapStateToProps(state) {
     return {
-      //  programs: state.ProgramReducer.programs,
+        //  programs: state.ProgramReducer.programs,
     };
 }
 function mapDispatchToProps(dispatch) {
 
     return {
-     updateId: (id) => dispatch(actions.setId(id)),
+        updateId: (id) => dispatch(actions.setId(id)),
 
     };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)( function Registration(props){
+export default connect(mapStateToProps, mapDispatchToProps)(function Registration(props) {
     const nevigate = useNavigate();
-       
-   
+
+
     const LoginSchema = Yup.object().shape({
         userName: Yup.string().required('זהו שדה חובה'),
         email: Yup.string().required('זהו שדה חובה').email('מייל לא תקין'),
         password: Yup.string().required('זהו שדה חובה')
     })
     const handleSubmit = async (values) => {
-        try{
-         console.log(`${values.userName} ${values.email} ${values.password}`)
-        let token= await UserService.addNewUser(values)
-        props.updateId(token);
-        console.log("regisrer ststus is: "+token);
-        if(token){
-            alert('הרשמה הסתיימה בהצלחה')
-            nevigate(-1)
+        try {
+            console.log(`${values.userName} ${values.email} ${values.password}`)
+            let token = await UserService.addNewUser(values)
+            props.updateId(token);
+            console.log("regisrer ststus is: " + token);
+            if (token>0) {
+                swal("ההרשמה הסתיימה בהצלחה", "ברוכים הבאים :)", "success")
+                nevigate(-1)
+            }
+            if(token==-1){
+                swal("הרשמה נכשלה כבר קיים במערכת כזה משתמש " ," נסה שם משתמש אחר או מייל שונה","error")
+            }
         }
-        }
-        catch(err){
+        catch (err) {
 
         }
-        
+
     }
     return (
         <>
             <h1>הרשמה</h1>
             <Formik
-            initialValues={{userName:'', email: '', password: "" }}
-            onSubmit={handleSubmit}
-            validationSchema={LoginSchema}
+                initialValues={{ userName: '', email: '', password: "" }}
+                onSubmit={handleSubmit}
+                validationSchema={LoginSchema}
 
             >
                 <Form>
@@ -81,4 +85,4 @@ export default connect(mapStateToProps,mapDispatchToProps)( function Registratio
             </Formik>
         </>
     );
- })
+})
