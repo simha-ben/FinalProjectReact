@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, setState } from 'react';
 import ProgramService from '../services/Program.service';
-import { Card, Button, Collapse } from 'react-bootstrap'
+import { Card, Button, Collapse, Spinner } from 'react-bootstrap'
 import { connect, shallowEqual } from 'react-redux'
 import { Drawer, } from 'react-bootstrap-drawer';
 import ShowProgram from './ShowProgram.component';
@@ -23,7 +23,6 @@ export default connect(mapStateToProps)
         const location = useLocation();
         const { fromHome } = location.state || {};
         const price = useRef(200);
-        // let { programs } = props;
         const [programs] = useState([...props.programs]);
         const [viewPrograms, setViewPrograms] = useState([...props.programs]);
         const [selectedValues, setSlectedValues] = useState({});
@@ -34,7 +33,7 @@ export default connect(mapStateToProps)
                 saveOptions(fromHome)
                 filter()
             }
-        }, [programs])
+        }, [props])
         function saveOptions(e) {
             selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
@@ -58,32 +57,39 @@ export default connect(mapStateToProps)
             if (arr.length > 0)
                 setViewPrograms(arr);
             else
-            swal("אין מוצרים בקטגוריה זו")
+                swal("אין מוצרים בקטגוריה זו")
         };
 
-
+        if (programs.length == 0) {
+            return (
+                <div style={{ minHeight: '73vh' }}>
+                    <h1>laoding...</h1>
+                    <Spinner animation="border" variant="success" />
+                </div>
+            )
+        }
         return (
             <>
-            <br></br>
-            <br></br>
-            <br></br>
-             <div className='row'>
-                        <div className='col-9'>
-                            {
-                                viewPrograms && viewPrograms.map((v, i) => (
-                                    <ShowProgram program={v}></ShowProgram>))
-                            }
-                        </div>
-                        <div className='col-3'>
-                            <Button onClick={filter}>סנן</Button>
-                            <MultySelect tableName={'Age'} onSelect={saveOptions} title="מיועד לגיל"></MultySelect>
-                            <MultySelect tableName={'Language'} onSelect={saveOptions} title="שפה"></MultySelect>
-                            <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
-                            <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
-                            <MultySelect tableName={'Subject'} onSelect={saveOptions} title="נושא"></MultySelect>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div className='row'>
+                    <div className='col-9'>
+                        {
+                            viewPrograms && viewPrograms.map((v, i) => (
+                                <ShowProgram program={v}></ShowProgram>))
+                        }
+                    </div>
+                    <div className='col-3'>
+                        <Button onClick={filter}>סנן</Button>
+                        <MultySelect tableName={'Age'} onSelect={saveOptions} title="מיועד לגיל"></MultySelect>
+                        <MultySelect tableName={'Language'} onSelect={saveOptions} title="שפה"></MultySelect>
+                        <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
+                        <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
+                        <MultySelect tableName={'Subject'} onSelect={saveOptions} title="נושא"></MultySelect>
 
-                            up to:  <input type="number" ref={price} />
-                            {/*                             
+                        up to:  <input type="number" ref={price} />
+                        {/*                             
                             <Slider
                                 size="small"
                                 defaultValue={70}
@@ -92,8 +98,8 @@ export default connect(mapStateToProps)
                             />
                             <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" /> */}
 
-                        </div>
                     </div>
+                </div>
                 {/* </div> */}
 
 

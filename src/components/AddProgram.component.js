@@ -47,8 +47,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         Language: Yup.string(),//.required('this feild is required')
         //file:new File(["foo"], "foo.txt")//new File([""], "")// Yup.file(),//.required('this feild is required')
     })
-    const handleSubmit = async (values) => {
-        debugger
+    const handleSubmit = async (values) => {        
         values.file=file; 
         values.Programer = id;
         const formData = new FormData()

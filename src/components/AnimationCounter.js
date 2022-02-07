@@ -39,7 +39,7 @@ export default function Counter(topNumber) {
     }
 
     useEffect(() => {
-        debugger
+        
         animate(count, 0, topNumber, 5000)
     }, [])
 

@@ -32,7 +32,7 @@ export default connect(mapStateToProps)(function Search(props) {
         setFilterProgram(program);
     }
     useEffect(() => {  
-        debugger     
+             
         if (typeof(fromHome) != 'undefined') {
             wordToSearch.current.value = fromHome
             search()

@@ -27,7 +27,7 @@ export default connect(mapStateToProps)(function Home(props) {
     const [search,setSearch]=useState('');
 
     function searchMe() {
-        debugger
+        
         setSearch(wordToSearch.current.value);
         // navigate('/search', { fromHome: search })
     }

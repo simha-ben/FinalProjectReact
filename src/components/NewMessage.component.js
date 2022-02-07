@@ -59,7 +59,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function NewMessage(
         context: Yup.string(),
     })
     const handleSubmit = async (values) => {
-        debugger
+        
         console.log(`${values.title} `)
         let aaa = {
             FromUser: id,
