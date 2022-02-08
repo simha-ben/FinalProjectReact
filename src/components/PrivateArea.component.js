@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import NewMessage from './NewMessage.component';
 import { useNavigate, } from 'react-router-dom'
 import DisConnectedAlert from './DisConnectedAlert';
+import LogInComponent from './LogIn.component';
 
 
 function mapStateToProps(state) {
@@ -38,7 +39,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
     )
     if (!id) {
         return (
-            <DisConnectedAlert></DisConnectedAlert>
+            // <DisConnectedAlert></DisConnectedAlert>
+            
+            <LogInComponent></LogInComponent>
         )
     }
 

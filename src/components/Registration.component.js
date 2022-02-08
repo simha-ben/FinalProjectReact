@@ -6,6 +6,7 @@ import { actions } from '../redux/Action';
 import UserService from '../services/User.service';
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
+import '../style/Form.css'
 
 function mapStateToProps(state) {
     return {
@@ -49,8 +50,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
 
     }
     return (
-        <div  style={{minHeight:'73vh'}}>
-            <h1>הרשמה</h1>
+        <div  style={{minHeight:'73vh'}} className="row d-flex justify-content-center ">
+            <div className=' formDiv'>
+            <h3>טופס רישום</h3>
 
             <Formik
                 initialValues={{ userName: '', email: '', password: "" }}
@@ -59,25 +61,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
 
             >
                 <div class="row d-flex justify-content-center">
-                    <Form class="col-4">
+                    <Form class="col-8">
                         <div className="form-group">
-                            <Field placeholder="שם" type="text" name="userName" className="form-control" />
+                            <Field placeholder="שם" type="text" name="userName" className="form-control MyField" />
                             <ErrorMessage name="userName" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="מייל" type="email" name="email" className="form-control" />
+                            <Field placeholder="מייל" type="email" name="email" className="form-control MyField" />
                             <ErrorMessage name="email" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="סיסמא" type="password" name="password" className="form-control" />
+                            <Field placeholder="סיסמא" type="password" name="password" className="form-control MyField" />
                             <ErrorMessage name="password" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="טלפון" type="text" name="phone" className="form-control" />
+                            <Field placeholder="טלפון" type="text" name="phone" className="form-control MyField" />
                             <ErrorMessage name="phone" component="div" />
                         </div>
                         <div className="form-group">
-                            <Field placeholder="כתובת" type="text" name="address" className="form-control" />
+                            <Field placeholder="כתובת" type="text" name="address" className="form-control MyField" />
                             <ErrorMessage name="address" component="div" />
                         </div>
                         <div className="form-group">
@@ -86,6 +88,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
                     </Form>
                 </div>
             </Formik>
+            </div>
         </div>
     );
 })

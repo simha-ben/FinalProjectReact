@@ -40,7 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)
                             <NavLink activeClassName="active" className="nav-link" exact to="/search">חיפוש</NavLink>
                             <NavLink activeClassName="active" className="nav-link" exact to="/addProgram">הוספת תוכנית</NavLink>
                             <NavLink activeClassName="active" className="nav-link" exact to="/privateArea">אזור אישי</NavLink>
-                            <NavLink activeClassName="active" className="nav-link" exact to="/login">התחברות</NavLink>
+                            {/* <NavLink activeClassName="active" className="nav-link" exact to="/login">התחברות</NavLink> */}
                             {/* <button onClick={signout} style={{ 'color': 'rgba(255, 255, 255, 0.55)', 'backgroundColor': 'black' }}>
                                 <CgLogOut style={{ 'color': 'rgba(255, 255, 255, 0.55)', 'backgroundColor': 'black' }}></CgLogOut>יציאה
                             </button> */}
