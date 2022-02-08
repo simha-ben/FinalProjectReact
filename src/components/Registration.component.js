@@ -7,6 +7,7 @@ import UserService from '../services/User.service';
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
 import '../style/Form.css'
+import {AiOutlineUserAdd} from 'react-icons/ai'
 
 function mapStateToProps(state) {
     return {
@@ -52,6 +53,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
     return (
         <div  style={{minHeight:'73vh'}} className="row d-flex justify-content-center ">
             <div className=' formDiv'>
+                <AiOutlineUserAdd style={{color:'rgb(41, 151, 161)',fontSize: 100 }}/>
             <h3>טופס רישום</h3>
 
             <Formik
@@ -83,7 +85,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
                             <ErrorMessage name="address" component="div" />
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary">הרשם</button>
+                            <button type="submit" className="btn btn-primary" style={{backgroundColor:'rgb(41, 151, 161)'}}>הרשם</button>
                         </div>
                     </Form>
                 </div>

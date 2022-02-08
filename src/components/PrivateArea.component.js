@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import ProgramService from '../services/Program.service';
-import { Card, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import UserService from '../services/User.service';
 import MessageService from '../services/Message.service';
 import ShowMessage from './ShowMessage.componnent'
-import { Link } from 'react-router-dom';
-import NewMessage from './NewMessage.component';
-import { useNavigate, } from 'react-router-dom'
+import { TiArrowForward, TiArrowBack, TiHeartFullOutline } from 'react-icons/ti'
+import { FaSignOutAlt } from 'react-icons/fa'
 import DisConnectedAlert from './DisConnectedAlert';
 import LogInComponent from './LogIn.component';
+import { Tab, Row, Col, Nav } from 'react-bootstrap';
+import "../style/sideBar.css"
+import ShowProgram from './ShowProgram.component';
+import { CgLogOut } from 'react-icons/cg';
+import { actions } from '../redux/Action';
 
-
+function mapDispatchToProps(dispatch) {
+    return {
+        signOut: (i) => dispatch(actions.signOut(i)),
+    };
+}
 function mapStateToProps(state) {
     return {
         id: state.UserReducer.id,
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-
+        programs: state.ProgramReducer.programs,
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea(props) {
+export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(props) {
     const [Messages, setMeaasges] = useState([]);
+    const [favorite, setFavorite] = useState([]);
     const [userName, setUserName] = useState(" ");
-    let { id } = props;
+    const [inColor, setIn] = useState('white');
+    const [outColor, setOut] = useState('white');
+    const [loveColor, setLove] = useState('white');
+    let { id, programs } = props;
     const [createNew, setCreateNew] = useState(false);
     useEffect(
         async () => {
@@ -40,12 +46,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
     if (!id) {
         return (
             // <DisConnectedAlert></DisConnectedAlert>
-            
+
             <LogInComponent></LogInComponent>
         )
     }
 
     async function getAcceptedMeaasges() {
+        setIn('#e7eeed')
+        setOut('white')
+        setLove('white')
         try {
 
             let p = await MessageService.getMessages('accepted', id);
@@ -59,6 +68,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
         }
     }
     async function getSentdMeaasges() {
+        setOut('#e7eeed')
+        setIn('white')
+        setLove('white')
+
         try {
 
             let p = await MessageService.getMessages('sent', id);
@@ -71,14 +84,103 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
             console.log(err);
         }
     }
-    function createNewMessage() {
-        setCreateNew(!createNew)
-    }
 
+    function getFavorites() {
+        setLove('#e7eeed')
+        setIn('white')
+        setOut('white')
+        let arr = JSON.parse(localStorage.getItem('favorite')) || [];
+        if (arr) {
+
+            let fav = programs.filter((item) => {
+                let bol = false
+                arr.forEach(element => {
+                    if (!bol) { bol = (item.id == element) }
+                });
+                return bol
+            })
+            setFavorite(fav)
+        }
+
+    }
+    function signout() {
+        props.signOut(null);
+    }
     return (
-        <>
-            <h3>hello {userName} :)</h3>
-            <Button variant="primary" onClick={getSentdMeaasges}>נשלח</Button>{"   "}
+        <div style={{ minHeight: '73vh' }}>
+            <h3>שלום {userName} :)</h3>
+            <Tab.Container id="left-tabs-example" >
+                <Row>
+                    <Col sm={3}>
+                        <Nav variant="pills " className="flex-column">
+                            <Nav.Item>
+                                <Nav.Link eventKey="first" variant="secondary" onClick={getAcceptedMeaasges}
+                                    style={{
+                                        border: 'rgb(41, 151, 161) solid  1px',
+                                        backgroundColor: inColor,
+                                        color: "red",
+                                        marginBottom: '5px'
+                                    }}>
+                                    <TiArrowBack style={{ fontSize: '30' }} />  דואר נכנס</Nav.Link>
+                            </Nav.Item>
+
+                            <Nav.Item>
+                                <Nav.Link eventKey="second" variant="secondary" onClick={getSentdMeaasges}
+                                    style={{ border: 'rgb(41, 151, 161) solid  1px', backgroundColor: outColor, color: 'red' }}>
+                                    <TiArrowForward style={{ fontSize: '30' }} />   דואר יוצא
+                                </Nav.Link>
+
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="love" variant="secondary" onClick={getFavorites}
+                                    style={{
+                                        border: 'rgb(41, 151, 161) solid  1px',
+                                        backgroundColor: loveColor,
+                                        color: "red",
+                                        marginTop: '5px'
+                                    }}>
+                                    <TiHeartFullOutline style={{ fontSize: '30' }} />  התוכניות שאהבתי</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link onClick={signout}  style={{
+                                        border: 'rgb(41, 151, 161) solid  1px',
+                                        backgroundColor: 'white',
+                                        color: "red",
+                                        marginTop: '5px'
+                                    }}>
+                                    <FaSignOutAlt style={{ fontSize: '25' }}/>    יציאה  
+                                </Nav.Link></Nav.Item>
+                        </Nav>
+                    </Col>
+                    <Col sm={9}>
+                        <Tab.Content>
+                            <Tab.Pane eventKey="first">
+                                {
+                                    Messages && Messages.map((m) =>
+                                        <ShowMessage message={m}></ShowMessage>
+                                    )
+                                }
+
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="second">
+                                {
+                                    Messages && Messages.map((m) =>
+                                        <ShowMessage message={m}></ShowMessage>
+                                    )
+                                }
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="love">
+                                {
+                                    favorite.length > 0 ? favorite.map((m) =>
+                                        <ShowProgram program={m}></ShowProgram>)
+                                        : <h3 style={{ justifyContent: 'center', marginTop: '10vh' }}> אין לך תוכניות שמורות...</h3>
+                                }
+                            </Tab.Pane>
+                        </Tab.Content>
+                    </Col>
+                </Row>
+            </Tab.Container>
+            {/* <Button variant="primary" onClick={getSentdMeaasges}>נשלח</Button>{"   "}
             <Button variant="primary" onClick={getAcceptedMeaasges}>התקבל</Button>{"    "}
             <Button variant="primary" >הניבחרים שלי יוצג בצד תמיד</Button>{"    "}
             <Button variant="primary" onClick={createNewMessage}> אולי לבטל הודעה חדשה</Button>
@@ -89,7 +191,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea
                 Messages && Messages.map((m) =>
                     <ShowMessage message={m}></ShowMessage>
                 )
-            }
-        </>
+            } */}
+        </div>
     );
 })

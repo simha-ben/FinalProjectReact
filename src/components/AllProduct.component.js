@@ -33,7 +33,7 @@ export default connect(mapStateToProps)
                 saveOptions(fromHome)
                 filter()
             }
-        }, [props])
+        }, [props.programs])
         function saveOptions(e) {
             selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
@@ -50,7 +50,7 @@ export default connect(mapStateToProps)
                         }
                     }
                 }
-                if (price.current.value && p.price < parseInt(price.current.value))
+                if (price.current.value && p.price > parseInt(price.current.value))
                     show = false
                 return show;
             });
@@ -83,7 +83,7 @@ export default connect(mapStateToProps)
                         <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
                         <MultySelect tableName={'Subject'} onSelect={saveOptions} title="נושא"></MultySelect>
 
-                        up to:  <input type="number" ref={price} />
+                        עד למחיר:  <input type="number" ref={price} />
                         {/*                             
                             <Slider
                                 size="small"

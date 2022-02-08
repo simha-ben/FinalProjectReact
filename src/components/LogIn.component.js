@@ -8,6 +8,7 @@ import { actions } from '../redux/Action';
 import swal from 'sweetalert'
 import '../style/Input.css'
 import '../style/Form.css'
+import{FaUserCircle} from 'react-icons/fa'
 
 
 function mapStateToProps(state) {
@@ -48,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Login(props
         <div style={{ minHeight: '73vh' }} class="row d-flex justify-content-center"  >
            
            <div className='formDiv' >
-                
+                    
                 <Formik
                     initialValues={{ userName: '', email: '', password: "" }}
                     onSubmit={handleSubmit}
@@ -56,7 +57,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Login(props
 
                 >
                    
-                    <div class="row d-flex justify-content-center" > <h3>התחברות</h3> 
+                    <div class="row d-flex justify-content-center" >
+                       <FaUserCircle style={{ fontSize: 100 ,color:'rgb(41, 151, 161)'}}/>  <h3>התחברות</h3> 
+                     
                         <Form className='col-8'>
 
                             <div className="form-group">
@@ -73,7 +76,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Login(props
                             </div>
                             <br />
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary">הכנס</button>
+                                <button type="submit" className="btn btn-primary"style={{backgroundColor:'rgb(41, 151, 161)'}}>הכנס</button>
                             </div>
 
                         </Form>

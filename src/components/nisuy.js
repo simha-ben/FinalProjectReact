@@ -1,55 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Tab,Row,Col,Nav } from 'react-bootstrap';
 
-export default function Counter( topNumber) {
+export default function SideBar(props) {
+    return (
+        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+                <Col sm={3}>
+                    <Nav variant="pills" className="flex-column">
+                        <Nav.Item>
+                            <Nav.Link eventKey="first">דואר נכנס</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="second">דואר יוצא</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                </Col>
+                <Col sm={9}>
+                    <Tab.Content>
+                        <Tab.Pane eventKey="first">
+                        <p>2222222222222</p>  
 
-    const [count, setCount] = useState(0)
-
-    function animate(obj, initVal, lastVal, duration) {
-
-        let startTime = null;
-    
-        //get the current timestamp and assign it to the currentTime variable
-        let currentTime = Date.now();
-    
-        //pass the current timestamp to the step function
-        const step = (currentTime ) => {
-    
-            //if the start time is null, assign the current time to startTime
-            if (!startTime) {
-                  startTime = currentTime ;
-            }
-    
-            //calculate the value to be used in calculating the number to be displayed
-            const progress = Math.min((currentTime  - startTime) / duration, 1);
-    
-            //calculate what to be displayed using the value gotten above
-            setCount(Math.floor(progress * (lastVal - initVal) + initVal));
-    
-            //checking to make sure the counter does not exceed the last value (lastVal)
-            if (progress < 1) {
-                  window.requestAnimationFrame(step);
-            }
-            else{
-                  window.cancelAnimationFrame(window.requestAnimationFrame(step));
-            }
-        };
-    
-        //start animating
-        window.requestAnimationFrame(step);
-    }
-    
-    useEffect(() => {
-        
-        animate(count,0,topNumber,5000)
-    } , [])
-
-
-return (
-    <div>
-        <h1 id='stats-number'>{count}</h1>
-    </div>
-);
-    }
-
-
- // React.render(<Counter />, document.getElementById('app'));
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="second">
+                          <p>111111111111</p>  
+                        </Tab.Pane>
+                    </Tab.Content>
+                </Col>
+            </Row>
+        </Tab.Container>
+    );
+};

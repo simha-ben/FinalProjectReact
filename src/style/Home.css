@@ -8,3 +8,7 @@ Button{
   #tab{
     background-color: whitesmoke !important;
   }
+  .homeButton{
+    height: 80px !important;
+    min-width: 80px;
+  }

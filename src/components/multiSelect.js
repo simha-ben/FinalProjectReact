@@ -44,6 +44,7 @@ export default connect(mapStateToProps)(function MultySelect(props) {
                 defaultValue={[]}
                 isMulti
                 options={options}
+                placeholder='בחר'
                 onChange={handleInputChange}
             />
         </div>
