@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../images/loogo.jpg'
+import logo from '../images/logo_b.jpg'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -26,7 +26,7 @@ export default connect(mapStateToProps, mapDispatchToProps)
         }
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="lg"  bg="black" variant="dark">
                    
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" >

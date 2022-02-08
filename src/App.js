@@ -19,7 +19,7 @@ import Counter from './components/Counter.component';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <NavBar />
       <Routes>
         <Route exact element={<About />} path="/about" />

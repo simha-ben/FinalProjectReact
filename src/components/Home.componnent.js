@@ -10,6 +10,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Counter from './Counter.component';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import SearchComponent from './Search.component';
+import home from '../images/home6.png';
+
 // import Counter from './CounterAnimation';
 
 function mapStateToProps(state) {
@@ -24,24 +26,52 @@ export default connect(mapStateToProps)(function Home(props) {
     let { kategories, migdar, programs } = props;
     let wordToSearch = useRef('')
     const navigate = useNavigate();
-    const [search,setSearch]=useState('');
+    const [search, setSearch] = useState('');
 
     function searchMe() {
-        
+
         setSearch(wordToSearch.current.value);
-        // navigate('/search', { fromHome: search })
     }
     return (
         <div>
-            {/* <Search></Search> */}
+            <div style={{ color: 'white', minHeight: '73vh', backgroundImage: `url(${home})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }} dir='rtl' >
+                <form onSubmit={searchMe}>
+                    <div>
+                        <label >
+                            <h3>מה אתה מחפש?</h3>
+                            <h5>הדרך הקלה והמהירה ביותר לאיתור תוכנית הרצאה או הפעלה לארוע שלך ,<br></br>מתוך מאגר הסרטים,המצגות, ההרצאות,ההפעלות וההופעות</h5>
+                            <br />
+                            {/* <MDBInput label="Example label" outline size="lg" /> */}
+                            <label class="field field_v1">
+                                <input class="field__input" placeholder="לדוג' תפילה" ref={wordToSearch}
+                                    onChange={() => {
+                                        setSearch(wordToSearch.current.value)
+                                    }} />
+                                <span class="field__label-wrap">
+                                    <span class="field__label">אני מחפש...</span>
+                                </span>
+                            </label>
+                        </label>
+                        <br />
+                        <br />
+                        <Button onClick={searchMe} style={{color:'red',borderColor:'red'}}variant="outline-light" >
+                            <Link to="/search" state={{ fromHome: search }} style={{color:'red'}} >
+                                מצא אותי
+                            </Link>
+                        </Button>
+                    </div>
+
+                </form>
+
+            </div>
             <div>
-                <input placeholder='אני מחפש/ת...'  ref={wordToSearch} onChange={()=>{
+                {/* <input placeholder='אני מחפש/ת...'  ref={wordToSearch} onChange={()=>{
                          setSearch(wordToSearch.current.value)
-                     }}></input>
+                     }}></input> */}
                 {/* <Button onClick={searchMe} > */}
-                     <Link to="/search" state={{ fromHome: search}} > 
+                {/* <Link to="/search" state={{ fromHome: search}} > 
                     מצא אותי
-                         </Link>
+                         </Link> */}
                 {/* </Button> */}
             </div>
             <h2 style={{ fontFamily: 'Ariel !important' }}>מיין תוצאות לפי:</h2>

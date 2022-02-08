@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import { useNavigate ,} from 'react-router-dom'
 import { actions } from '../redux/Action';
 import swal from 'sweetalert'
+import '../style/Input.css'
 
 function mapStateToProps(state) {
     return {
@@ -52,7 +53,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(function Login(props)
                 <Form class="col-4">
                     <br/><br/>
                     <div className="form-group">
-                        <Field placeholder="שם משתמש" type="text" name="userName" className="form-control" />
+                        <Field placeholder="שם משתמש" type="text" name="userName" className="form-control " />
                         <ErrorMessage name="userName" component="div" />
                     </div>
                     <div className="form-group">
