@@ -74,12 +74,7 @@ export default connect(mapStateToProps)
                 <br></br>
                 <br></br>
                 <div className='row'>
-                    <div className='col-9'>
-                        {
-                            viewPrograms && viewPrograms.map((v, i) => (
-                                <ShowProgram program={v}></ShowProgram>))
-                        }
-                    </div>
+                    
                     <div className='col-3'>
                         <Button onClick={filter}>סנן</Button>
                         <MultySelect tableName={'Age'} onSelect={saveOptions} title="מיועד לגיל"></MultySelect>
@@ -98,6 +93,12 @@ export default connect(mapStateToProps)
                             />
                             <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" /> */}
 
+                    </div>
+                    <div className='col-9'>
+                        {
+                            viewPrograms && viewPrograms.map((v, i) => (
+                                <ShowProgram program={v}></ShowProgram>))
+                        }
                     </div>
                 </div>
                 {/* </div> */}
