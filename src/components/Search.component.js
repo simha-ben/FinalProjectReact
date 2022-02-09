@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import ShowProgram from './ShowProgram.component';
 import { useLocation } from "react-router-dom";
 import { MDBInput } from "mdbreact";
-import InputPage from './input';
+
 import home from '../images/home6.png';
 
 function mapStateToProps(state) {
