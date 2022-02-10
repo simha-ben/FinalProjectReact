@@ -33,9 +33,9 @@ export default connect(mapStateToProps)
             if (fromHome) {
                 saveOptions(fromHome)
                 filter()
-                if(fromHome){
-                    setSlectedValues({ key: 'type', value: [] } )
-                    setSlectedValues({ key: 'migdar', value: [] } )
+                if (fromHome) {
+                    setSlectedValues({ key: 'type', value: [] })
+                    setSlectedValues({ key: 'migdar', value: [] })
                 }
             }
         }, [])
@@ -64,7 +64,7 @@ export default connect(mapStateToProps)
                     show = false
                 return show;
             });
-           
+
             if (arr.length > 0)
                 setViewPrograms(arr);
             else {
@@ -97,8 +97,8 @@ export default connect(mapStateToProps)
                         <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
                         <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
                         <MultySelect tableName={'Subject'} onSelect={saveOptions} title="נושא"></MultySelect>
-
-                        עד למחיר:  <input type="number" ref={price} />
+                        <h5>עד למחיר:</h5>
+                        <input type="number" ref={price} className="priceInput" />
                         {/*                             
                             <Slider
                                 size="small"
