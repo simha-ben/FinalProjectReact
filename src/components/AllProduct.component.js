@@ -23,32 +23,34 @@ export default connect(mapStateToProps)
         const location = useLocation();
         const { fromHome } = location.state || {};
         const price = useRef(200);
-        const [programs,setPrograms] = useState([...props.programs]);
+        const [programs, setPrograms] = useState([...props.programs]);
         const [viewPrograms, setViewPrograms] = useState([...props.programs]);
         const [selectedValues, setSlectedValues] = useState({});
 
         useEffect(() => {
             debugger;
-            if(programs.length >0)
-            {setPrograms([...props.programs])}
+            if (programs.length > 0) { setPrograms([...props.programs]) }
             if (fromHome) {
                 saveOptions(fromHome)
                 filter()
+                if(fromHome){
+                    setSlectedValues({ key: 'type', value: [] } )
+                    setSlectedValues({ key: 'migdar', value: [] } )
+                }
             }
-        }, [props])
+        }, [])
         function camelize(str) {
-            return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-              return index === 0 ? word.toLowerCase() : word.toUpperCase();
+            return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+                return index === 0 ? word.toLowerCase() : word.toUpperCase();
             }).replace(/\s+/g, '');
-          }
+        }
         function saveOptions(e) {
-            selectedValues[ camelize(e.key)] = e.value;
+            selectedValues[camelize(e.key)] = e.value;
             setSlectedValues(selectedValues);
             console.log(selectedValues);
         }
         function filter() {
-           
-             let arr = programs.filter(p => {
+            let arr = programs.filter(p => {
                 let show = true;
                 for (const key in selectedValues) {
                     if (p[key] && selectedValues[key] && selectedValues[key].length > 0) {
@@ -62,16 +64,17 @@ export default connect(mapStateToProps)
                     show = false
                 return show;
             });
+           
             if (arr.length > 0)
                 setViewPrograms(arr);
-            else{
+            else {
                 swal("אין מוצרים בקטגוריה זו")
                 setViewPrograms([...props.programs])
             }
-           
+
         };
 
-        if (programs.length<=0 ) {
+        if (programs.length <= 0) {
             return (
                 <div style={{ minHeight: '73vh' }}>
                     <h1>laoding...</h1>
@@ -85,10 +88,11 @@ export default connect(mapStateToProps)
                 <br></br>
                 <br></br>
                 <div className='row'>
-                    
+
                     <div className='col-3'>
                         <Button onClick={filter}>סנן</Button>
                         <MultySelect tableName={'Age'} onSelect={saveOptions} title="מיועד לגיל"></MultySelect>
+                        <MultySelect tableName={'Migdar'} onSelect={saveOptions} title="מיועד עבור"></MultySelect>
                         <MultySelect tableName={'Language'} onSelect={saveOptions} title="שפה"></MultySelect>
                         <MultySelect tableName={'SumOfParticipants'} onSelect={saveOptions} title="כמות משתתפים"></MultySelect>
                         <MultySelect tableName={'Type'} onSelect={saveOptions} title="סוג ההפעלה"></MultySelect>
