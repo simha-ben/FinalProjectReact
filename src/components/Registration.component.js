@@ -7,7 +7,7 @@ import UserService from '../services/User.service';
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
 import '../style/Form.css'
-import {AiOutlineUserAdd} from 'react-icons/ai'
+import { AiOutlineUserAdd } from 'react-icons/ai'
 
 function mapStateToProps(state) {
     return {
@@ -35,9 +35,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
         try {
             console.log(`${values.userName} ${values.email} ${values.password}`)
             let token = await UserService.addNewUser(values)
-            props.updateId(token);
             console.log("regisrer ststus is: " + token);
             if (token > 0) {
+                props.updateId(token);
                 swal("ההרשמה הסתיימה בהצלחה", "ברוכים הבאים :)", "success")
                 nevigate(-1)
             }
@@ -51,45 +51,45 @@ export default connect(mapStateToProps, mapDispatchToProps)(function Registratio
 
     }
     return (
-        <div  style={{minHeight:'73vh'}} className="row d-flex justify-content-center ">
+        <div style={{ minHeight: '73vh' }} className="row d-flex justify-content-center ">
             <div className=' formDiv'>
-                <AiOutlineUserAdd style={{color:'rgb(41, 151, 161)',fontSize: 100 }}/>
-            <h3>טופס רישום</h3>
+                <AiOutlineUserAdd style={{ color: 'rgb(41, 151, 161)', fontSize: 100 }} />
+                <h3>טופס רישום</h3>
 
-            <Formik
-                initialValues={{ userName: '', email: '', password: "" }}
-                onSubmit={handleSubmit}
-                validationSchema={LoginSchema}
+                <Formik
+                    initialValues={{ userName: '', email: '', password: "" }}
+                    onSubmit={handleSubmit}
+                    validationSchema={LoginSchema}
 
-            >
-                <div class="row d-flex justify-content-center">
-                    <Form class="col-8">
-                        <div className="form-group">
-                            <Field placeholder="שם" type="text" name="userName" className="form-control MyField" />
-                            <ErrorMessage name="userName" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field placeholder="מייל" type="email" name="email" className="form-control MyField" />
-                            <ErrorMessage name="email" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field placeholder="סיסמא" type="password" name="password" className="form-control MyField" />
-                            <ErrorMessage name="password" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field placeholder="טלפון" type="text" name="phone" className="form-control MyField" />
-                            <ErrorMessage name="phone" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <Field placeholder="כתובת" type="text" name="address" className="form-control MyField" />
-                            <ErrorMessage name="address" component="div" />
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary" style={{backgroundColor:'rgb(41, 151, 161)'}}>הרשם</button>
-                        </div>
-                    </Form>
-                </div>
-            </Formik>
+                >
+                    <div class="row d-flex justify-content-center">
+                        <Form class="col-8">
+                            <div className="form-group">
+                                <Field placeholder="שם" type="text" name="userName" className="form-control MyField" />
+                                <ErrorMessage name="userName" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <Field placeholder="מייל" type="email" name="email" className="form-control MyField" />
+                                <ErrorMessage name="email" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <Field placeholder="סיסמא" type="password" name="password" className="form-control MyField" />
+                                <ErrorMessage name="password" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <Field placeholder="טלפון" type="text" name="phone" className="form-control MyField" />
+                                <ErrorMessage name="phone" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <Field placeholder="כתובת" type="text" name="address" className="form-control MyField" />
+                                <ErrorMessage name="address" component="div" />
+                            </div>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'rgb(41, 151, 161)' }}>הרשם</button>
+                            </div>
+                        </Form>
+                    </div>
+                </Formik>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
  #app { height: 100% }
-html,
-body {
+/* html, */
+/* body {
   position: relative;
   height: 100%;
-}
+} */
 
 /* body {
   background: rgb(202, 10, 10); */
@@ -46,4 +46,14 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.swiperDiv{
+    
+  background-color:  #f8f8f8;
+   /* padding: 31px; */
+   width: 100%;
+   /* height:50vh; */
+   /* margin-top:10vh; */
+   border-bottom: 1px solid #e4e4e4
+
 }

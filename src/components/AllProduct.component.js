@@ -23,24 +23,27 @@ export default connect(mapStateToProps)
         const location = useLocation();
         const { fromHome } = location.state || {};
         const price = useRef(200);
-        const [programs] = useState([...props.programs]);
+        const [programs,setPrograms] = useState([...props.programs]);
         const [viewPrograms, setViewPrograms] = useState([...props.programs]);
         const [selectedValues, setSlectedValues] = useState({});
 
         useEffect(() => {
             debugger;
+            if(programs.length >0)
+            {setPrograms([...props.programs])}
             if (fromHome) {
                 saveOptions(fromHome)
                 filter()
             }
-        }, [props.programs])
+        }, [props])
         function saveOptions(e) {
             selectedValues[e.key.toLocaleLowerCase()] = e.value;
             setSlectedValues(selectedValues);
             console.log(selectedValues);
         }
         function filter() {
-            let arr = programs.filter(p => {
+           
+             let arr = programs.filter(p => {
                 let show = true;
                 for (const key in selectedValues) {
                     if (p[key] && selectedValues[key] && selectedValues[key].length > 0) {
@@ -56,11 +59,14 @@ export default connect(mapStateToProps)
             });
             if (arr.length > 0)
                 setViewPrograms(arr);
-            else
+            else{
                 swal("אין מוצרים בקטגוריה זו")
+                setViewPrograms([...props.programs])
+            }
+           
         };
 
-        if (programs.length == 0) {
+        if (programs.length<=0 ) {
             return (
                 <div style={{ minHeight: '73vh' }}>
                     <h1>laoding...</h1>

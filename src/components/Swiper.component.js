@@ -7,7 +7,7 @@ import 'swiper/swiper.min.css'
 import "../style/Swiper.css";
 import SwiperCore, { Pagination } from 'swiper';
 import ShowProgram from "./ShowProgram.component";
-// install Swiper modules
+
 SwiperCore.use([Pagination]);
 function mapStateToProps(state) {
     return {
@@ -30,37 +30,45 @@ export default connect(mapStateToProps, mapDispatchToProps)
             setNewest(p.slice(0, 5))
         }, [programs])
         return (
-            <>
+            <div className="swiperDiv">
                 <Swiper
+                
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
                     slidesPerView={4}
-                    spaceBetween={30}
-                    centeredSlides={true}
+                    spaceBetween={-50}
+                    centeredSlides={false}
                     breakpoints={{
                         0: {
-                          width: 0,
+                          width: 1000,
                           slidesPerView: 1,
                         },
                         500: {
-                            width: 500,
+                            width: 1200,
                             slidesPerView: 2,
                           },
-                        768: {
-                          width: 768,
+                        750: {
+                          width: 1200,
                           slidesPerView: 3,
                         },
                         1200: {
                           width: 1200,
-                          slidesPerView: 5,
-                        },}}
+                          slidesPerView: 3,
+                        },
+                    }}
                     pagination={{
                         "clickable": true
-                    }} className="mySwiper"
-                    style={{ marginBottom:'100px'}}
+                    }} 
+                    className="mySwiper"
+                    style={{paddingBottom:'60px'}}
                 >
                     {
                         newest && newest.map((item, index) => (
                             < SwiperSlide >
-                                <span style={{marginTop:'10px',paddingRight:'40px',width:'100%',height:'100%'}}>
+                                <span style={{paddingRight:'40px',width:'100%',height:'100%',backgroundColor:'#f8f8f8'}}>
                                     <ShowProgram program={item} ></ShowProgram >
                                 </span>
                             </SwiperSlide>
@@ -68,6 +76,6 @@ export default connect(mapStateToProps, mapDispatchToProps)
                     }
 
                 </Swiper>
-            </>
+            </div>
         )
     })

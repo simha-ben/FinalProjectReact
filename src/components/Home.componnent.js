@@ -10,7 +10,8 @@ import Counter from './Counter.component';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import SearchComponent from './Search.component';
 import home from '../images/home6.png';
-import aaa from '../images/aaa.png';
+import helf from '../images/b1.jpg';
+
 
 function mapStateToProps(state) {
     return {
@@ -67,10 +68,11 @@ export default connect(mapStateToProps)(function Home(props) {
                 </form>
 
             </div>
-            <div style={{ width: '90vw'  }} >
-                {/* <div style={{display:"flex"}}> */}
-                    <h2 style={{ fontFamily: 'Ariel !important' }}>מיין תוצאות לפי:</h2>
-                    <div className="border rounded" >
+            <div style={{ backgroundImage: `url(${helf})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}  >
+                <div style={{width:'90vw',marginRight: '5vw'}}>
+                    <br></br>
+                    <h2 style={{ fontFamily: 'Ariel !important', color:'white'}}>מיין תוצאות לפי:</h2>
+                    <div className="border rounded swiperDiv" >
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                             <Tab eventKey="home" title="חיפוש לפי נושא">
                                 <div>
@@ -94,18 +96,21 @@ export default connect(mapStateToProps)(function Home(props) {
                                     }</div>
                             </Tab>
                         </Tabs>
-                    {/* </div > */}
+                    </div >
                 </div>
             </div>
-            <div>
+            <div >
                 <br></br>
                 <h3>החדשים שלנו</h3>
                 <MySwiper></MySwiper>
             </div>
-            <div>  כמות התוכניות שלנווווו
+            <br></br>
+            <div className='numberDiv'> 
+            <h4> כמות התוכניות שלנו</h4>
                 <Counter max={sumOfPrograms}></Counter>
             </div>
         </div>
+       
     );
 
 })

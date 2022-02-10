@@ -18,7 +18,7 @@ export default function Footer() {
         }}> */}
 
         {/* </div> */}
-            <footer class="text-center text-white bg-dark"
+            <footer class="text-center text-white bg-black"
                 // style={{    backgroundColor: "#F8F8F8",
                 // borderTop: "1px solid #E7E7E7",
                 // textAlign: "center",
@@ -35,7 +35,7 @@ export default function Footer() {
 
                 {/* <!-- Copyright --> */}
                 {/* <div class="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2);"}}> */}
-                © 2022 easyPlan:
+                 easyPlan-2022 ©
                 {/* <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a> */}
                 {/* </div> */}
                 {/* <!-- Copyright --> */}

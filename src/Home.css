@@ -10,12 +10,7 @@ Button{
   }
   .homeButton{
     height: 80px !important;
-    min-width: 80px;
-  }
-  .numberDiv{
-    width: 40vw;
-    margin-right: 30vw;
-    border-width: 2px;
-    border:2px rgb(235, 86, 86) solid;
-    border-radius: 5px;
+    width: 100px;
+    /* max-width: 90px; */
+    border-radius: 30px;
   }
