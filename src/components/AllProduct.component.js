@@ -29,7 +29,10 @@ export default connect(mapStateToProps)
 
         useEffect(() => {
             debugger;
-            if (programs.length > 0) { setPrograms([...props.programs]) }
+            if (props.programs && props.programs.length > 0) {                
+                setPrograms([...props.programs])
+                setViewPrograms([...props.programs])
+            }
             if (fromHome) {
                 saveOptions(fromHome)
                 filter()
@@ -38,7 +41,7 @@ export default connect(mapStateToProps)
                     setSlectedValues({ key: 'migdar', value: [] })
                 }
             }
-        }, [])
+        }, [props.programs])
         function camelize(str) {
             return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
                 return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -76,7 +79,7 @@ export default connect(mapStateToProps)
 
         if (programs.length <= 0) {
             return (
-                <div style={{ minHeight: '73vh' }}>
+                <div style={{ minHeight: '73vh',fontSize:50 }}>
                     <h1>laoding...</h1>
                     <Spinner animation="border" variant="success" />
                 </div>
