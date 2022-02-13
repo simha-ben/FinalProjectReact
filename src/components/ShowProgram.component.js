@@ -11,13 +11,14 @@ export default function ShowProgram(props) {
     const nevigate=useNavigate();
 
     useEffect(() => {
+        setFavorite(false)
         setP(props.program);
         let fav =  localStorage.getItem('favorite');
         if(fav && fav.indexOf(program.id)> -1){
             setFavorite(true);
         }
 
-    }, [props.program]);
+    }, [props.program,props]);
 
     function like() {
         let arr = JSON.parse(localStorage.getItem('favorite')) || [];

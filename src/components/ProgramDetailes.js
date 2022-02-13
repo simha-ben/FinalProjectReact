@@ -6,7 +6,8 @@ import '../style/programDetails.css'
 import { useLocation } from "react-router-dom";
 import { connect } from 'react-redux'
 import { BsPersonFill,BsFillPeopleFill ,BsCalendar2Date} from "react-icons/bs";
-import { BiMessageRoundedDetail } from "react-icons/bi";
+import { BiMessageRoundedDetail ,BiShekel} from "react-icons/bi";
+import{MdOutlineDescription}from 'react-icons/md'
 import {GiAges} from 'react-icons/gi';
 import {MdModeStandby} from 'react-icons/md'
 
@@ -49,20 +50,19 @@ export default connect(mapStateToProps, mapDispatchToProps)
                     <Card.Body>
                         <Card.Title> מאת: {program.programerName} <BsPersonFill/></Card.Title>
                         <Card.Text>
-                             <br/>
-                            {program.description} <br/>
-                             מיועד עבור:  {program.age} <GiAges/><br/>
-                           שפה: {program.language} <BiMessageRoundedDetail/><br/>
-                           נמצא אצלנו מ:   {program.publishDate &&new Date (program.publishDate).toLocaleDateString()}<BsCalendar2Date/><br/>
-                            {program.subject} <MdModeStandby/><br/>
-                           כמות משתתפים:  {program.sumOfParticipants} <BsFillPeopleFill/><br/>
+                             <br/><MdOutlineDescription/>     {program.description} <br/>
+                            <GiAges/> מיועד עבור:  {program.age} <br/>
+                         <BiMessageRoundedDetail/>  שפה: {program.language} <br/>
+                         <BsCalendar2Date/>  נמצא אצלנו מ:   {program.publishDate &&new Date (program.publishDate).toLocaleDateString()}<br/>
+                           <MdModeStandby/> {program.subject} <br/>
+                         <BsFillPeopleFill/>  כמות משתתפים:  {program.sumOfParticipants} <br/>
                         </Card.Text>
                         <Button variant="primary" onClick={() =>
                              { setTO(program.programer);
                               setToName(program.programerName);
                              setnewM(!newM) }}>צור קשר</Button>
                     </Card.Body>
-                    <Card.Footer className="text-muted"> ש"ח {program.price}</Card.Footer>
+                    <Card.Footer className="text-muted"><BiShekel/>  {program.price}</Card.Footer>
                 </Card>
                 </div>
                 <br></br>
