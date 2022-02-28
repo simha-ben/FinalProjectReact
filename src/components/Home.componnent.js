@@ -26,7 +26,7 @@ export default connect(mapStateToProps)(function Home(props) {
     let wordToSearch = useRef('')
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const [sumOfPrograms, setSumP] = useState(programs.length);
+    const [sumOfPrograms, setSumP] = useState(props.programs.length);
 
     function searchMe() {
         setSearch(wordToSearch.current.value);
@@ -72,7 +72,7 @@ export default connect(mapStateToProps)(function Home(props) {
                 <div style={{width:'90vw',marginRight: '5vw'}}>
                     <br></br>
                     <h2 style={{ fontFamily: 'Ariel !important', color:'white'}}>מיין תוצאות לפי:</h2>
-                    <div className="border rounded swiperDiv" >
+                    <div className="border rounded swiperDiv"style={{minHeight:'36vh'}} >
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                             <Tab eventKey="home" title="חיפוש לפי נושא">
                                 <div>
@@ -104,6 +104,8 @@ export default connect(mapStateToProps)(function Home(props) {
                 <h3>החדשים שלנו</h3>
                 <MySwiper></MySwiper>
             </div>
+            <br></br>
+            
             <br></br>
             <div className='numberDiv'> 
             <h4> כמות התוכניות שלנו</h4>
