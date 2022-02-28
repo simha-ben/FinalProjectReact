@@ -15,6 +15,7 @@
 // }
 
 import React, { useState, useEffect } from 'react';
+import Fidbek from './Fidbek.component';
 import axios from 'axios';
 import UserService from '../services/User.service';
 export default function About() {
@@ -58,7 +59,9 @@ export default function About() {
                 ולראות את התשובה באזור האישי שלכם
 
             </p>
-
+            <div className='swiperDiv'>
+            <Fidbek></Fidbek>
+            </div>
         </div>
     )
     // if (error) {

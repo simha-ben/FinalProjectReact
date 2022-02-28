@@ -81,7 +81,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
         <>
             <h3>נא הכניסי את פרטי התוכנית
                 <br></br>
-                הפרטים יועברו למנהל המערכת ואם ימצא ראוי יוכנס למאגר :)
+                הפרטים יועברו למנהל המערכת ואם ימצאו ראויים התוכנית תוכנס למאגר :)
             </h3>
             <Formik
                 initialValues={{ ProgramerName:UserName }}
@@ -136,7 +136,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddProgram(
                                 <Field placeholder="תמונה" type="file" name="file" onChange={(event)=>setFile({ file: event.target.files[0] })} className="form-control" />
                             </div>
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-primary">שלח</button>
                             </div>
                         </div>
 

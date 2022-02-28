@@ -37,8 +37,8 @@ export default function Counter(props) {
         window.requestAnimationFrame(step);
     }
     useEffect(() => {
-        animate(null,0,max,5000)
-    }, [])
+        animate(null,0,max,(max/5)*1000)
+    }, [props.max])
     return(
         <h2>{count}</h2>
     )

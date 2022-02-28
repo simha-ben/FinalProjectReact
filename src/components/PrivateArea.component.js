@@ -25,7 +25,7 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(props) {
+export default connect(mapStateToProps, mapDispatchToProps)(function PrivateArea(props) {
     const [Messages, setMeaasges] = useState([]);
     const [favorite, setFavorite] = useState([]);
     const [userName, setUserName] = useState(" ");
@@ -38,15 +38,14 @@ export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(
         async () => {
             if (id) {
                 let name = await UserService.getNameById(id);
-
                 setUserName(name);
+                getFavorites();
             }
-        }, []
+           
+        }, [props.programs,props.id]
     )
     if (!id) {
         return (
-            // <DisConnectedAlert></DisConnectedAlert>
-
             <LogInComponent></LogInComponent>
         )
     }
@@ -86,11 +85,12 @@ export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(
     }
 
     function getFavorites() {
+        
         setLove('#e7eeed')
         setIn('white')
         setOut('white')
         let arr = JSON.parse(localStorage.getItem('favorite')) || [];
-        if (arr) {
+        if (arr && programs) {
 
             let fav = programs.filter((item) => {
                 let bol = false
@@ -106,10 +106,11 @@ export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(
     function signout() {
         props.signOut(null);
     }
+
     return (
         <div style={{ minHeight: '73vh' }}>
             <h3>שלום {userName} :)</h3>
-            <Tab.Container id="left-tabs-example" >
+            <Tab.Container id="left-tabs-example" defaultActiveKey="love" >
                 <Row>
                     <Col sm={3}>
                         <Nav variant="pills " className="flex-column">
@@ -142,18 +143,18 @@ export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(
                                     <TiHeartFullOutline style={{ fontSize: '30' }} />  התוכניות שאהבתי</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link onClick={signout}  style={{
-                                        border: 'rgb(41, 151, 161) solid  1px',
-                                        backgroundColor: 'white',
-                                        color: "red",
-                                        marginTop: '5px'
-                                    }}>
-                                    <FaSignOutAlt style={{ fontSize: '25' }}/>    יציאה  
+                                <Nav.Link onClick={signout} style={{
+                                    border: 'rgb(41, 151, 161) solid  1px',
+                                    backgroundColor: 'white',
+                                    color: "red",
+                                    marginTop: '5px'
+                                }}>
+                                    <FaSignOutAlt style={{ fontSize: '25' }} />    יציאה
                                 </Nav.Link></Nav.Item>
                         </Nav>
                     </Col>
                     <Col sm={9}>
-                        <Tab.Content>
+                        <Tab.Content  >
                             <Tab.Pane eventKey="first">
                                 {
                                     Messages && Messages.map((m) =>
@@ -180,18 +181,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(function PrivateArea(
                     </Col>
                 </Row>
             </Tab.Container>
-            {/* <Button variant="primary" onClick={getSentdMeaasges}>נשלח</Button>{"   "}
-            <Button variant="primary" onClick={getAcceptedMeaasges}>התקבל</Button>{"    "}
-            <Button variant="primary" >הניבחרים שלי יוצג בצד תמיד</Button>{"    "}
-            <Button variant="primary" onClick={createNewMessage}> אולי לבטל הודעה חדשה</Button>
-            {
-                createNew && <NewMessage from={id} />
-            }
-            {
-                Messages && Messages.map((m) =>
-                    <ShowMessage message={m}></ShowMessage>
-                )
-            } */}
+
         </div>
     );
 })
